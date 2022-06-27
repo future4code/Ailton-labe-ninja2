@@ -28,9 +28,9 @@ const Main = styled.div`
   width: 100vw;
   height: 80vh;
   background-color: bisque;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 `;
 
 const Footer = styled.div`
@@ -41,8 +41,21 @@ const Footer = styled.div`
 
 export default class Contrato extends Component {
   render() {
+
+    // console.log(this.props.trampos)
+
+    const mapeia = this.props.getAllJobs.map((nome) =>{
+
+
+      return <p>{nome.title}</p>
+
+
+    })
+
     return (
+
       <DivContainer>
+
         <GlobalStyle></GlobalStyle>
         <Header>
           Contrato
@@ -51,7 +64,11 @@ export default class Contrato extends Component {
           </button>
         </Header>
 
-        <Main>MAIN</Main>
+        <Main>MAIN
+
+          {mapeia}
+
+        </Main>
 
         <Footer>Footer</Footer>
       </DivContainer>
