@@ -39,6 +39,9 @@ const Footer = styled.div`
   background-color: purple;
 `;
 
+const BotaoHome = styled.button `
+border: 1px solid black;
+`
 export default class Contrato extends Component {
   render() {
     return (
@@ -46,9 +49,9 @@ export default class Contrato extends Component {
         <GlobalStyle></GlobalStyle>
         <Header>
           Contrato
-          <button onClick={() => this.props.atualizaValor("home")}>
+          <BotaoHome onClick={() => this.props.atualizaValor("home")}>
             Voltar Home
-          </button>
+          </BotaoHome>
         </Header>
 
         <Main>MAIN</Main>

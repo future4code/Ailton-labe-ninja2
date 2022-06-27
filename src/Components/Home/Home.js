@@ -24,7 +24,7 @@ const Header = styled.div`
 
     width: 100vw;
     height: 10vh;
-    background-color: gray;
+    background-color: #bcbcbc;
 `
 
 
@@ -32,7 +32,7 @@ const Main = styled.div`
 
     width: 100vw;
     height: 80vh;
-    background-color: aquamarine;
+    background-color: #e06666;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +43,7 @@ const Footer = styled.div`
 
     width: 100vw;
     height: 10vh;
-    background-color: gray;
+    background-color: #bcbcbc;
 `
 
 
