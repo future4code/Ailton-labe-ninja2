@@ -1,25 +1,81 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import styled from 'styled-components'
+import axios from 'axios'
+import React, { Component } from 'react'
+import Home from './Components/Home/Home.js'
+import Cadastro from './Components/Cadastro/Cadastro.js'
+import Contrato from './Components/Contrato/Contrato.js'
+
+
+
+const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
+
+
+export default class App extends Component {
+
+  state = {
+
+    tela: 'home'
+
+  }
+
+
+  trocaTela = () =>{
+
+    switch(this.state.tela) {
+
+      case 'home':
+      return <Home atualizaValor={this.atualizaValor}></Home>;
+      break;
+
+      case 'cadastro':
+      return <Cadastro atualizaValor={this.atualizaValor}></Cadastro>
+      break;
+
+      case 'contrato':
+      return <Contrato atualizaValor={this.atualizaValor}></Contrato>
+      break;
+
+    }
+
+
+  }
+
+
+  atualizaValor = (id) =>{
+
+    this.setState({tela: id})
+
+
+  }
+
+// createKey = () =>{
+
+// const url = 'https://labeninjas.herokuapp.com/auth'
+// const body = {
+//   name: 'labeninja-2'
+// }
+
+// axios.post(url, body,{
+
+// }).then((response) =>{
+//   alert('Authorization Criada')
+//   console.log(response)
+// }).catch((error)=>{
+//   alert('Erro, tente novamente !')
+// })
+// }
+
+
+
+  render() {
+
+    return (
+
+      <div>
+        {this.trocaTela()}
+      </div>
+    )
+  }
 }
 
-export default App;
