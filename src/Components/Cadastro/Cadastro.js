@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components';
@@ -63,14 +64,92 @@ export default class Cadastro extends Component {
     state = {
 
         inputTitulo: '',
-        inputDescricao: ''
-        // inputDescricao: ''
+        inputDescricao: '',
+        inputPreco: '',
+        inputPagamento: ['card-cred'],
+        inputPrazo: '',
 
 
     }
 
 
+    cadastraProfiss = () =>{
+        
+        const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
+        const url = 'https://labeninjas.herokuapp.com/jobs'
+        const body = {
+            "title": this.state.inputTitulo,
+            "description": this.state.inputDescricao,
+            "price": Number(this.state.inputPreco),
+            "paymentMethods":this.state.inputPagamento,
+            "dueDate":this.state.inputPrazo
+        }
+
+        axios.post(url, body,{
+            headers:{
+                Authorization: Authorization
+            }
+          }).then((response) =>{
+            alert('Trampo Criado')
+            console.log(response)
+
+          }).catch((error)=>{
+            alert('Erro, tente novamente !')
+            console.log(error.response)
+          })
+
+    }
+
+
+    onChangeInputTitulo  = (e) =>{
+        // console.log(e.target.value)
+        this.setState({inputTitulo: e.target.value})
+
+        }
+
+    onChangeInputDescricao  = (e) =>{
+        // console.log(e.target.value)
+
+        this.setState({inputDescricao: e.target.value})
+
+        }
+    onChangeInputPreco  = (e) =>{
+        // console.log(e.target.value)
+
+        this.setState({inputPreco: e.target.value})
+
+        }
+
+    onChangeInputPagamento  = (e) =>{
+        const Valor = e.target.value
+
+        const Copia = [...this.state.inputPagamento, Valor]
+
+        this.setState({inputPagamento: Copia})
+
+    // console.log(e.target.value) 
+
+        }
+
+    // componentDidMount () {
+    //     this.onChangeInputPagamento()
+    // }
+
+    // componentDidUpdate () {
+    //     this.onChangeInputPagamento()
+
+    // }
+
+    onChangeInputPrazo  = (e) =>{
+        // console.log(e.target.value)
+
+        this.setState({inputPrazo: e.target.value})
+
+        }
+
   render() {
+
+    // console.log(this.state.inputPagamento)
 
 
 
@@ -88,19 +167,25 @@ export default class Cadastro extends Component {
         <div><h1>Cadastre um serviço</h1></div>
 
         <Inputs>
-        <input type={'text'} placeholder={'Título'}></input>
-        <input type={'text'} placeholder={'Descrição'}></input>
-        <input type={'number'} placeholder={'R$'}></input>
-        <select name="pagamento">
-        <option value="cart-cred" selected>Cartão Crédito</option>
+
+        <input type={'text'} placeholder={'Título'} value={this.state.inputTitulo} onChange={this.onChangeInputTitulo}></input>
+
+        <input type={'text'} placeholder={'Descrição'} value={this.state.inputDescricao} onChange={this.onChangeInputDescricao}></input>
+
+        <input type={'number'} placeholder={'R$'} value={this.state.inputPreco} onChange={this.onChangeInputPreco}></input>
+
+        <select name="pagamento"  onChange={this.onChangeInputPagamento}>
+        <option value="cart-cred">Cartão Crédito</option>
         <option value="cart-deb">Cartão Débito</option>
         <option value="pix">Pix</option>
         <option value="paypal">PayPal</option>
         <option value="boleto">Boleto</option>
 
         </select>
-        <input type={'date'}></input>
-        <button>Cadastre</button>
+
+        <input type={'date'} value={this.state.inputPrazo} onChange={this.onChangeInputPrazo}></input>
+        
+        <button onClick={this.cadastraProfiss}>Cadastre</button>
         </Inputs>
 
         </Main>
