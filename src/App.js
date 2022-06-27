@@ -10,13 +10,12 @@ import Contrato from './Components/Contrato/Contrato.js'
 
 const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
 
-
 export default class App extends Component {
 
   state = {
 
-    tela: 'home'
-
+    tela: 'home',
+    trampos: []
   }
 
 
@@ -33,7 +32,7 @@ export default class App extends Component {
       break;
 
       case 'contrato':
-      return <Contrato atualizaValor={this.atualizaValor}></Contrato>
+      return <Contrato atualizaValor={this.atualizaValor} getAllJobs={this.state.trampos}></Contrato>
       break;
 
     }
@@ -42,12 +41,49 @@ export default class App extends Component {
   }
 
 
+  componentDidMount(){
+    this.getAllJobs()
+  }
+
+  componentDidUpdate(){
+    this.getAllJobs()
+  }
+
+  getAllJobs = () =>{
+
+    const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
+    const url = 'https://labeninjas.herokuapp.com/jobs'
+    axios.get(url, {
+
+      headers:{
+          Authorization: Authorization
+      }
+
+    }).then((response) =>{
+      // alert('Trampos')
+      // console.log('trampos',response)
+
+      this.setState({trampos: response.data.jobs})
+
+    }).catch((error)=>{
+      // alert('Erro, tente novamente !')
+      // console.log(error.response)
+    })
+
+
+
+  }
+
+
+
+
   atualizaValor = (id) =>{
 
     this.setState({tela: id})
 
 
   }
+
 
 // createKey = () =>{
 
