@@ -21,23 +21,25 @@ const DivContainer = styled.div`
 const Header = styled.div`
   width: 100vw;
   height: 10vh;
-  background-color: purple;
+  background-color: #ffd966;
 `;
 
 const Main = styled.div`
   width: 100vw;
   height: 80vh;
-  background-color: bisque;
+  background-color: #ffe599;
   /* display: flex;
   justify-content: center;
   align-items: center; */
 `;
 
+
 const Footer = styled.div`
-  width: 100vw;
-  height: 10vh;
-  background-color: purple;
-`;
+     width: 100vw;
+    height: 10vh;
+    background-color:#ffd966;
+    font-family: 'Tahoma';
+`
 
 const BotaoHome = styled.button `
 border: 1px solid black;
@@ -73,7 +75,11 @@ export default class Contrato extends Component {
 
         </Main>
 
-        <Footer>Footer</Footer>
+        <Footer>
+          <p>
+            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e Sávio Ayres
+            </p>
+            </Footer>
       </DivContainer>
     );
   }

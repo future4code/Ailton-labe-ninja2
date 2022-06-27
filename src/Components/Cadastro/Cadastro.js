@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
-=======
 import axios from 'axios';
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components';
 
 
->>>>>>> 46566a1c8966b2ba27c5ae104acf831a5dd4383c
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,13 +24,15 @@ const DivContainer = styled.div`
 const Header = styled.div`
   width: 100vw;
   height: 10vh;
-  background-color: red;
+  background-color: #ffd966;
+  font-family: 'Bebas Neue';
+  font-size: 220%;
 `;
 
 const Main = styled.div`
   width: 100vw;
   height: 80vh;
-  background-color: bisque;
+  background-color: #ffe599;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -44,34 +40,54 @@ const Main = styled.div`
   flex-direction: column;
 `;
 const Titulo = styled.div`
+  font-family: 'Bebas Neue';
+  font-size: 250%;
   margin-bottom: 20px;
-`;
+  margin-top: 10px;
+  
+`
 
 const Inputs = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const BotaoHome = styled.button`
-  border: 1px solid black;
-  justify-content: space-between;
-  align-content: flex-end;
-`;
 
+const InputsIndividuais = styled.input `
+border: 1px solid #bf9000;
+margin-top: 4px;
+width: align;
+height: 20px;
+border-radius: 2px;
+`
+
+const BotaoHome = styled.button `
+border: 1px solid #bf9000;
+margin-left: 5px;
+width: 70px;
+height: 20px;
+border-radius: 6px;
+`
+const BotaoCadastrar = styled.button `
+border: 1px solid #bf9000;
+margin-left: 5px;
+margin-top: 8px;
+width: align;
+height: 20px;
+border-radius: 6px;
+`
 const Footer = styled.div`
-  width: 100vw;
-  height: 10vh;
-  background-color: red;
+     width: 100vw;
+    height: 10vh;
+    background-color:#ffd966;
+`
+const TextoFooter = styled.p`
+  font-family: "Tahoma";
+  padding: 40px 0 0 905px;
+  font-size: small;
 `;
 
 
 export default class Cadastro extends Component {
-<<<<<<< HEAD
-  state = {
-    inputTitulo: "",
-    inputDescricao: "",
-    // inputDescricao: ''
-  };
-=======
 
     state = {
 
@@ -84,7 +100,6 @@ export default class Cadastro extends Component {
 
     }
 
->>>>>>> 46566a1c8966b2ba27c5ae104acf831a5dd4383c
 
     cadastraProfiss = () =>{
         
@@ -161,39 +176,31 @@ export default class Cadastro extends Component {
         }
 
   render() {
-<<<<<<< HEAD
-=======
 
     // console.log(this.state.inputPagamento)
 
 
 
->>>>>>> 46566a1c8966b2ba27c5ae104acf831a5dd4383c
     return (
       <DivContainer>
         <GlobalStyle></GlobalStyle>
         <Header>
           Cadastro
           <BotaoHome onClick={() => this.props.atualizaValor("home")}>
-            Voltar Home
+            Home
           </BotaoHome>
         </Header>
 
         <Main>
-<<<<<<< HEAD
-          <Titulo>
-            <h1>Cadastre um serviço</h1>
-          </Titulo>
-=======
-        <div><h1>Cadastre um serviço</h1></div>
+        <Titulo><p>Cadastre um serviço</p></Titulo>
 
         <Inputs>
 
-        <input type={'text'} placeholder={'Título'} value={this.state.inputTitulo} onChange={this.onChangeInputTitulo}></input>
+        <InputsIndividuais type={'text'} placeholder={'Título'} value={this.state.inputTitulo} onChange={this.onChangeInputTitulo}></InputsIndividuais>
 
-        <input type={'text'} placeholder={'Descrição'} value={this.state.inputDescricao} onChange={this.onChangeInputDescricao}></input>
+        <InputsIndividuais type={'text'} placeholder={'Descrição'} value={this.state.inputDescricao} onChange={this.onChangeInputDescricao}></InputsIndividuais>
 
-        <input type={'number'} placeholder={'R$'} value={this.state.inputPreco} onChange={this.onChangeInputPreco}></input>
+        <InputsIndividuais type={'number'} placeholder={'R$'} value={this.state.inputPreco} onChange={this.onChangeInputPreco}></InputsIndividuais>
 
         <select name="pagamento"  onChange={this.onChangeInputPagamento}>
         <option value="cart-cred">Cartão Crédito</option>
@@ -204,34 +211,16 @@ export default class Cadastro extends Component {
 
         </select>
 
-        <input type={'date'} value={this.state.inputPrazo} onChange={this.onChangeInputPrazo}></input>
+        <InputsIndividuais type={'date'} value={this.state.inputPrazo} onChange={this.onChangeInputPrazo}></InputsIndividuais>
         
-        <button onClick={this.cadastraProfiss}>Cadastre</button>
+        <BotaoCadastrar onClick={this.cadastraProfiss}>Cadastre</BotaoCadastrar>
         </Inputs>
->>>>>>> 46566a1c8966b2ba27c5ae104acf831a5dd4383c
-
-          <Inputs>
-            <input type={"text"} placeholder={"Título"}></input>
-            <input type={"text"} placeholder={"Descrição"}></input>
-            <input type={"number"} placeholder={"R$ - Insira o valor aqui"}></input>
-            <select name="pagamento">
-              <option value="cart-cred" selected>
-                Cartão Crédito
-              </option>
-              <option value="cart-deb">Cartão Débito</option>
-              <option value="pix">Pix</option>
-              <option value="paypal">PayPal</option>
-              <option value="boleto">Boleto</option>
-            </select>
-            <input type={"date"}></input>
-            <button>Cadastre</button>
-          </Inputs>
         </Main>
 
         <Footer>
-          <p>
-            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e Sávio Ayres
-          </p>
+          <TextoFooter>
+            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Lobo e Sávio Ayres.
+          </TextoFooter>
         </Footer>
       </DivContainer>
     );
