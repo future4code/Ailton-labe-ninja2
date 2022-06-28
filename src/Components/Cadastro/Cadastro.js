@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components';
+import Contrato from '../Contrato/Contrato';
 
 
 
@@ -96,9 +97,16 @@ export default class Cadastro extends Component {
         inputPreco: '',
         inputPagamento: ['card-cred'],
         inputPrazo: '',
+        // imageUrl: [],
+        guardaValor: false,
 
 
     }
+
+
+    // if(guardaValor){
+    //   return <Contrato imageUrl={this.state.imageUrl}></Contrato>
+    // }
 
 
     cadastraProfiss = () =>{
@@ -119,6 +127,7 @@ export default class Cadastro extends Component {
             }
           }).then((response) =>{
             alert('Trampo Criado')
+            // this.setState({guardaValor: true})
             console.log(response)
 
           }).catch((error)=>{
@@ -127,6 +136,13 @@ export default class Cadastro extends Component {
           })
 
     }
+
+
+    // onChangeInputImage = (e) =>{
+
+    //   this.setState({imageUrl: e.target.value})
+
+    // }
 
 
     onChangeInputTitulo  = (e) =>{
@@ -199,7 +215,7 @@ export default class Cadastro extends Component {
         <InputsIndividuais type={'text'} placeholder={'Título'} value={this.state.inputTitulo} onChange={this.onChangeInputTitulo}></InputsIndividuais>
 
         <InputsIndividuais type={'text'} placeholder={'Descrição'} value={this.state.inputDescricao} onChange={this.onChangeInputDescricao}></InputsIndividuais>
-
+        {/* <InputsIndividuais type={'text'} placeholder={'Imagem'} value={this.state.imageUrl} onChange={this.onChangeInputImage}></InputsIndividuais> */}
         <InputsIndividuais type={'number'} placeholder={'R$'} value={this.state.inputPreco} onChange={this.onChangeInputPreco}></InputsIndividuais>
 
         <select name="pagamento"  onChange={this.onChangeInputPagamento}>
