@@ -33,20 +33,18 @@ const Main = styled.div`
   gap: 20px;
 `;
 
-
 const Footer = styled.div`
-     width: 100vw;
-    height: 10vh;
-    background-color:#ffd966;
-    font-family: 'Tahoma';
-`
+  width: 100vw;
+  height: 10vh;
+  background-color: #ffd966;
+  font-family: "Tahoma";
+`;
 
-const BotaoHome = styled.button `
-border: 1px solid black;
-`
+const BotaoHome = styled.button`
+  border: 1px solid black;
+`;
 
 const DivRenderizada = styled.div`
-
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
@@ -56,44 +54,37 @@ const DivRenderizada = styled.div`
   border-radius: 15px;
   width: 15vw;
   height: 30vh;
-
-`
+`;
 const DivRenderizadaBotao = styled.div`
-
   display: flex;
   justify-content: space-between;
-`
-
+`;
 
 export default class Contrato extends Component {
   render() {
-
     // console.log(this.props.getAllJobs)
 
-    const mapeia = this.props.getAllJobs.map((nome, id) =>{
+    const mapeia = this.props.getAllJobs.map((nome, id) => {
+      return (
+        <DivRenderizada key={nome.id}>
+          <h2>{nome.title}</h2>
 
+          <p>
+            Data: Até:{nome.dueDate.slice(8, 10)}-{nome.dueDate.slice(5, 7)}-
+            {nome.dueDate.slice(0, 4)}
+          </p>
+          <p>por R${nome.price}.00</p>
 
-      return <DivRenderizada key={nome.id}>
-        <h2>{nome.title}</h2>
-
-        <p>Data: Até:{nome.dueDate.slice(8,10)}-{nome.dueDate.slice(5,7)}-{nome.dueDate.slice(0,4)}</p>
-        <p>por R${nome.price}.00</p>
-
-
-        <DivRenderizadaBotao>
-        <button>Detalhes</button>
-        <button>Carrinho</button>
-        </DivRenderizadaBotao>
-        
+          <DivRenderizadaBotao>
+            <button>Detalhes</button>
+            <button>Carrinho</button>
+          </DivRenderizadaBotao>
         </DivRenderizada>
-
-
-    })
+      );
+    });
 
     return (
-
       <DivContainer>
-
         <GlobalStyle></GlobalStyle>
         <Header>
           Contrato
@@ -102,17 +93,14 @@ export default class Contrato extends Component {
           </BotaoHome>
         </Header>
 
-        <Main>
-
-          {mapeia}
-
-        </Main>
+        <Main>{mapeia}</Main>
 
         <Footer>
           <p>
-            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e Sávio Ayres
-            </p>
-            </Footer>
+            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e
+            Sávio Ayres
+          </p>
+        </Footer>
       </DivContainer>
     );
   }
