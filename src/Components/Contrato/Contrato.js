@@ -11,8 +11,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const DivContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   * {
     margin: 0;
     padding: 0;
@@ -20,7 +20,6 @@ const DivContainer = styled.div`
 `;
 
 const Header = styled.div`
-  width: 100vw;
   height: 10vh;
   font-family: "Bebas Neue";
   background-color: #ffd966;
@@ -28,38 +27,43 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 25px;
 `;
+
 const InputsFiltros = styled.div `
 background-color: #ffe599;
 align-items: flex-end;
-justify-items: end;
+justify-content: space-around;
 display: flex;
-padding: 6px;
+padding: 15px;
+gap: 20px;
 `
 const InputsIndividuais = styled.input `
-width: 35vh;
-margin-left: 6px;
+width: 250px;
 border: 1px solid black;
 height: 20px;
+border-radius: 4px;
 `
+
 const SelectIndividual = styled.select `
 width: 35vh;
 margin-left: 6px;
 border: 1px solid black;
-height: 21px;
+height: 22px;
+border-radius: 4px;
 `
+
 const Main = styled.div`
-  width: 100vw;
   height: 100%;
   min-height: 80vh;
   background-color: #ffe599;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  padding: 0 10px;
 `;
 
 const Footer = styled.div`
-  width: 100vw;
   height: 10vh;
   background-color: #ffd966;
   display: flex;
@@ -78,13 +82,12 @@ border-radius: 6px;
 
 const DivRenderizada = styled.div`
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   align-items: center;
   border: 1px solid #bf9000;
   box-shadow: #bf9000 2px 2px 2px;
   border-radius: 5px;
-  width: 15vw;
+  width: 250px;
   height: 25vh;
   margin-top: 25px;
 `;
@@ -154,7 +157,7 @@ export default class Contrato extends Component {
         }
       })
 
-      .map((nome, id) => {
+      .map((nome) => {
         return (
           <DivRenderizada key={nome.id}>
             <h2>{nome.title}</h2>
@@ -166,7 +169,7 @@ export default class Contrato extends Component {
             <p>por R${nome.price}.00</p>
 
             <DivRenderizadaBotao>
-              <button>Detalhes</button>
+              <button onClick={() => this.props.getJobId(nome.id)}>Detalhes</button>
               <button>Carrinho</button>
             </DivRenderizadaBotao>
           </DivRenderizada>
