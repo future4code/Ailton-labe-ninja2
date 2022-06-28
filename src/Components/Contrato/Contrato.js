@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    width: 100vw;
+    box-sizing: border-box;
   }
 `;
 
@@ -22,9 +22,32 @@ const DivContainer = styled.div`
 const Header = styled.div`
   width: 100vw;
   height: 10vh;
+  font-family: "Bebas Neue";
   background-color: #ffd966;
+  font-size: 220%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
-
+const InputsFiltros = styled.div `
+background-color: #ffe599;
+align-items: flex-end;
+justify-items: end;
+display: flex;
+padding: 6px;
+`
+const InputsIndividuais = styled.input `
+width: 35vh;
+margin-left: 6px;
+border: 1px solid black;
+height: 20px;
+`
+const SelectIndividual = styled.select `
+width: 35vh;
+margin-left: 6px;
+border: 1px solid black;
+height: 21px;
+`
 const Main = styled.div`
   width: 100vw;
   height: 100%;
@@ -42,10 +65,15 @@ const Footer = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: end;
+  font-size: small;
+  font-family: "Tahoma";
 `;
 
 const BotaoHome = styled.button`
-  border: 1px solid black;
+border: 1px solid #bf9000;
+width: 70px;
+height: 20px;
+border-radius: 6px;
 `;
 
 const DivRenderizada = styled.div`
@@ -53,15 +81,18 @@ const DivRenderizada = styled.div`
   /* justify-content: center; */
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
-  box-shadow: black 5px 5px 5px;
-  border-radius: 15px;
+  border: 1px solid #bf9000;
+  box-shadow: #bf9000 2px 2px 2px;
+  border-radius: 5px;
   width: 15vw;
-  height: 30vh;
+  height: 25vh;
+  margin-top: 25px;
 `;
 const DivRenderizadaBotao = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-left: 5px;
 `;
 
 export default class Contrato extends Component {
@@ -148,30 +179,30 @@ export default class Contrato extends Component {
         <Header>
           Contrato
           <BotaoHome onClick={() => this.props.atualizaValor("home")}>
-            Voltar Home
+            Home
           </BotaoHome>
         </Header>
 
-        <div>
-          <input
+        <InputsFiltros>
+          <InputsIndividuais
             type={"text"}
             placeholder={"Valor Mínimo"}
             value={this.state.inputValorMinimo}
             onChange={this.onChangeInputValorMinimo}
-          ></input>
-          <input
+          ></InputsIndividuais>
+          <InputsIndividuais
             type={"text"}
             placeholder={"Valor Máximo"}
             value={this.state.inputValorMaximo}
             onChange={this.onChangeInputValorMaximo}
-          ></input>
-          <input
+          ></InputsIndividuais>
+          <InputsIndividuais
             type={"text"}
             placeholder={"Busca por Título ou Descrição"}
             value={this.state.inputBuscar}
             onChange={this.onChangeInputBuscar}
-          ></input>
-          <select
+          ></InputsIndividuais>
+          <SelectIndividual
             value={this.state.inputOrdenacao}
             onChange={this.onChangeInputOrdenacao}
           >
@@ -180,8 +211,8 @@ export default class Contrato extends Component {
             <option value="maior-valor">Maior Valor</option>
             <option value="titulo">Título</option>
             <option value="prazo">Prazo</option>
-          </select>
-        </div>
+          </SelectIndividual>
+        </InputsFiltros>
         <Main>{mapeia}</Main>
 
         <Footer>
