@@ -18,13 +18,13 @@ const DivContainer = styled.div`
   }
 `;
 
-const BotaoHome = styled.button `
-border: 1px solid #bf9000;
-margin-left: 5px;
-width: 70px;
-height: 20px;
-border-radius: 6px;
-`
+const BotaoHome = styled.button`
+  border: 1px solid #bf9000;
+  margin-left: 5px;
+  width: 70px;
+  height: 20px;
+  border-radius: 6px;
+`;
 
 const Header = styled.div`
   width: 100vw;
@@ -75,7 +75,6 @@ export default class Home extends Component {
             />
           </TituloHome>
         </Header>
-
         <Main>
           <main>
             <BotaoHome onClick={() => this.props.atualizaValor("cadastro")}>

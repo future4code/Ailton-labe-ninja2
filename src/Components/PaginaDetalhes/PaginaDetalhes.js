@@ -15,12 +15,11 @@ export default class PaginaDetalhes extends React.Component {
   //   }
 
   render() {
-    // console.log(this.props.tramposDetalhes)
     return (
       <div>
         <div>{this.props.tramposDetalhes.title} - 
             {this.props.tramposDetalhes.price}
-           
+            <button onClick={() => this.props.atualizaValor("contrato")}>Voltar</button>
         </div>
       </div>
     );

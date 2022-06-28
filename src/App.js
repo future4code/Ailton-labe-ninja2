@@ -66,6 +66,7 @@ export default class App extends Component {
         console.log(error.response.data.message);
       });
     this.atualizaValor("detalhe");
+    console.log(id)
   };
 
   getAllJobs = () => {
@@ -78,37 +79,16 @@ export default class App extends Component {
         },
       })
       .then((response) => {
-        // alert('Trampos')
-        // console.log('trampos',response)
-
         this.setState({ trampos: response.data.jobs });
       })
       .catch((error) => {
-        // alert('Erro, tente novamente !')
-        // console.log(error.response)
+        alert('Erro, tente novamente !')
       });
   };
 
   atualizaValor = (id) => {
     this.setState({ tela: id });
   };
-
-  // createKey = () =>{
-
-  // const url = 'https://labeninjas.herokuapp.com/auth'
-  // const body = {
-  //   name: 'labeninja-2'
-  // }
-
-  // axios.post(url, body,{
-
-  // }).then((response) =>{
-  //   alert('Authorization Criada')
-  //   console.log(response)
-  // }).catch((error)=>{
-  //   alert('Erro, tente novamente !')
-  // })
-  // }
 
   render() {
     return <div>{this.trocaTela()}</div>;
