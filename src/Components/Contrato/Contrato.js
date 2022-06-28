@@ -81,7 +81,7 @@ export default class Contrato extends Component {
 
 
         <DivRenderizadaBotao>
-        <button>Detalhes</button>
+        <button onClick={() => this.props.getJobId(nome.id)}>Detalhes</button>
         <button>Carrinho</button>
         </DivRenderizadaBotao>
         

@@ -1,117 +1,116 @@
+import styled from "styled-components";
+import axios from "axios";
+import React, { Component } from "react";
+import Home from "./Components/Home/Home.js";
+import Cadastro from "./Components/Cadastro/Cadastro.js";
+import Contrato from "./Components/Contrato/Contrato.js";
+import PaginaDetalhes from "./Components/PaginaDetalhes/PaginaDetalhes.js";
 
-import styled from 'styled-components'
-import axios from 'axios'
-import React, { Component } from 'react'
-import Home from './Components/Home/Home.js'
-import Cadastro from './Components/Cadastro/Cadastro.js'
-import Contrato from './Components/Contrato/Contrato.js'
-
-
-
-const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
+const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
 
 export default class App extends Component {
-
   state = {
+    tela: "home",
+    trampos: [],
+    tramposDetalhes: [],
+  };
 
-    tela: 'home',
-    trampos: []
-  }
-
-
-  trocaTela = () =>{
-
-    switch(this.state.tela) {
-
-      case 'home':
-      return <Home atualizaValor={this.atualizaValor}></Home>;
-      break;
-
-      case 'cadastro':
-      return <Cadastro atualizaValor={this.atualizaValor}></Cadastro>
-      break;
-
-      case 'contrato':
-      return <Contrato atualizaValor={this.atualizaValor} getAllJobs={this.state.trampos}></Contrato>
-      break;
-
+  trocaTela = () => {
+    switch (this.state.tela) {
+      case "home":
+        return <Home atualizaValor={this.atualizaValor}></Home>;
+      case "cadastro":
+        return <Cadastro atualizaValor={this.atualizaValor}></Cadastro>;
+      case "contrato":
+        return (
+          <Contrato
+            getJobId={this.getJobId}
+            atualizaValor={this.atualizaValor}
+            detalheId={this.state.tramposDetalhes}
+            getAllJobs={this.state.trampos}
+          ></Contrato>
+        );
+      case "detalhe":
+        return (
+          <PaginaDetalhes
+            tramposDetalhes={this.state.tramposDetalhes}
+            atualizaValor={this.atualizaValor}
+          >
+            {" "}
+          </PaginaDetalhes>
+        );
+      default:
+        return <Home atualizaValor={this.atualizaValor}></Home>;
     }
+  };
 
-
+  componentDidMount() {
+    this.getAllJobs();
   }
 
-
-  componentDidMount(){
-    this.getAllJobs()
+  componentDidUpdate() {
+    this.getAllJobs();
   }
+  getJobId = (id) => {
+    const url = `https://labeninjas.herokuapp.com/jobs/${id}`;
+    axios
+      .get(url, {
+        headers: {
+          Authorization: "ce5895af-8d7c-488c-9062-f353648c87b8",
+        },
+      })
+      .then((response) => {
+        this.setState({ tramposDetalhes: response.data });
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+    this.atualizaValor("detalhe");
+  };
 
-  componentDidUpdate(){
-    this.getAllJobs()
-  }
+  getAllJobs = () => {
+    const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
+    const url = "https://labeninjas.herokuapp.com/jobs";
+    axios
+      .get(url, {
+        headers: {
+          Authorization: Authorization,
+        },
+      })
+      .then((response) => {
+        // alert('Trampos')
+        // console.log('trampos',response)
 
-  getAllJobs = () =>{
+        this.setState({ trampos: response.data.jobs });
+      })
+      .catch((error) => {
+        // alert('Erro, tente novamente !')
+        // console.log(error.response)
+      });
+  };
 
-    const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
-    const url = 'https://labeninjas.herokuapp.com/jobs'
-    axios.get(url, {
+  atualizaValor = (id) => {
+    this.setState({ tela: id });
+  };
 
-      headers:{
-          Authorization: Authorization
-      }
+  // createKey = () =>{
 
-    }).then((response) =>{
-      // alert('Trampos')
-      // console.log('trampos',response)
+  // const url = 'https://labeninjas.herokuapp.com/auth'
+  // const body = {
+  //   name: 'labeninja-2'
+  // }
 
-      this.setState({trampos: response.data.jobs})
+  // axios.post(url, body,{
 
-    }).catch((error)=>{
-      // alert('Erro, tente novamente !')
-      // console.log(error.response)
-    })
-
-
-
-  }
-
-
-
-
-  atualizaValor = (id) =>{
-
-    this.setState({tela: id})
-
-
-  }
-
-
-// createKey = () =>{
-
-// const url = 'https://labeninjas.herokuapp.com/auth'
-// const body = {
-//   name: 'labeninja-2'
-// }
-
-// axios.post(url, body,{
-
-// }).then((response) =>{
-//   alert('Authorization Criada')
-//   console.log(response)
-// }).catch((error)=>{
-//   alert('Erro, tente novamente !')
-// })
-// }
-
-
+  // }).then((response) =>{
+  //   alert('Authorization Criada')
+  //   console.log(response)
+  // }).catch((error)=>{
+  //   alert('Erro, tente novamente !')
+  // })
+  // }
 
   render() {
-
-    return (
-
-      <div>
-        {this.trocaTela()}
-      </div>
-    )
+    return <div>{this.trocaTela()}</div>;
   }
 }
-
