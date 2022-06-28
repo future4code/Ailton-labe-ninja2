@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 `;
 
@@ -21,98 +22,205 @@ const DivContainer = styled.div`
 const Header = styled.div`
   width: 100vw;
   height: 10vh;
+  font-family: "Bebas Neue";
   background-color: #ffd966;
+  font-size: 220%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
-
+const InputsFiltros = styled.div `
+background-color: #ffe599;
+align-items: flex-end;
+justify-items: end;
+display: flex;
+padding: 6px;
+`
+const InputsIndividuais = styled.input `
+width: 35vh;
+margin-left: 6px;
+border: 1px solid black;
+height: 20px;
+`
+const SelectIndividual = styled.select `
+width: 35vh;
+margin-left: 6px;
+border: 1px solid black;
+height: 21px;
+`
 const Main = styled.div`
   width: 100vw;
-  height: 80vh;
+  height: 100%;
+  min-height: 80vh;
   background-color: #ffe599;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
 `;
 
-
 const Footer = styled.div`
-     width: 100vw;
-    height: 10vh;
-    background-color:#ffd966;
-    font-family: 'Tahoma';
-`
+  width: 100vw;
+  height: 10vh;
+  background-color: #ffd966;
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  font-size: small;
+  font-family: "Tahoma";
+`;
 
-const BotaoHome = styled.button `
-border: 1px solid black;
-`
+const BotaoHome = styled.button`
+border: 1px solid #bf9000;
+width: 70px;
+height: 20px;
+border-radius: 6px;
+`;
 
 const DivRenderizada = styled.div`
-
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
-  box-shadow: black 5px 5px 5px;
-  border-radius: 15px;
+  border: 1px solid #bf9000;
+  box-shadow: #bf9000 2px 2px 2px;
+  border-radius: 5px;
   width: 15vw;
-  height: 30vh;
-
-`
+  height: 25vh;
+  margin-top: 25px;
+`;
 const DivRenderizadaBotao = styled.div`
-
   display: flex;
   justify-content: space-between;
-`
-
+  align-items: center;
+  margin-left: 5px;
+`;
 
 export default class Contrato extends Component {
-  render() {
+  state = {
+    inputValorMinimo: "",
+    inputValorMaximo: "",
+    inputBuscar: "",
+    inputOrdenacao: "",
+  };
 
+  onChangeInputValorMinimo = (event) => {
+    this.setState({ inputValorMinimo: event.target.value });
+  };
+  onChangeInputValorMaximo = (event) => {
+    this.setState({ inputValorMaximo: event.target.value });
+  };
+  onChangeInputBuscar = (event) => {
+    this.setState({ inputBuscar: event.target.value });
+  };
+  onChangeInputOrdenacao = (event) => {
+    this.setState({ inputOrdenacao: event.target.value });
+  };
+
+  render() {
     // console.log(this.props.getAllJobs)
 
-    const mapeia = this.props.getAllJobs.map((nome, id) =>{
+    const mapeia = this.props.getAllJobs
+      .filter((nome) => {
+        return (
+          this.state.inputValorMinimo === "" ||
+          nome.price >= this.state.inputValorMinimo
+        );
+      })
+      .filter((nome) => {
+        return (
+          this.state.inputValorMaximo === "" ||
+          nome.price <= this.state.inputValorMaximo
+        );
+      })
+      .filter((nome) => {
+        return nome.title
+          .toLowerCase()
+          .includes(this.state.inputBuscar.toLowerCase());
+      })
+      .sort((a, b) => {
+        switch (this.state.inputOrdenacao) {
+          case "menor-valor":
+            return a.price - b.price;
+            break;
+          case "maior-valor":
+            return b.price - a.price;
+            break;
+          case "titulo":
+            return a.title.localeCompare(b.title);
+            break;
+          case "prazo":
+            return new Date(a.dueDate) - new Date(b.dueDate);
+            break;
+        }
+      })
 
+      .map((nome, id) => {
+        return (
+          <DivRenderizada key={nome.id}>
+            <h2>{nome.title}</h2>
 
-      return <DivRenderizada key={nome.id}>
-        <h2>{nome.title}</h2>
+            <p>
+              Data: Até:{nome.dueDate.slice(8, 10)}-{nome.dueDate.slice(5, 7)}-
+              {nome.dueDate.slice(0, 4)}
+            </p>
+            <p>por R${nome.price}.00</p>
 
-        <p>Data: Até:{nome.dueDate.slice(8,10)}-{nome.dueDate.slice(5,7)}-{nome.dueDate.slice(0,4)}</p>
-        <p>por R${nome.price}.00</p>
-
-
-        <DivRenderizadaBotao>
-        <button onClick={() => this.props.getJobId(nome.id)}>Detalhes</button>
-        <button>Carrinho</button>
-        </DivRenderizadaBotao>
-        
-        </DivRenderizada>
-
-
-    })
+            <DivRenderizadaBotao>
+              <button>Detalhes</button>
+              <button>Carrinho</button>
+            </DivRenderizadaBotao>
+          </DivRenderizada>
+        );
+      });
 
     return (
-
       <DivContainer>
-
         <GlobalStyle></GlobalStyle>
         <Header>
           Contrato
           <BotaoHome onClick={() => this.props.atualizaValor("home")}>
-            Voltar Home
+            Home
           </BotaoHome>
         </Header>
 
-        <Main>
-
-          {mapeia}
-
-        </Main>
+        <InputsFiltros>
+          <InputsIndividuais
+            type={"text"}
+            placeholder={"Valor Mínimo"}
+            value={this.state.inputValorMinimo}
+            onChange={this.onChangeInputValorMinimo}
+          ></InputsIndividuais>
+          <InputsIndividuais
+            type={"text"}
+            placeholder={"Valor Máximo"}
+            value={this.state.inputValorMaximo}
+            onChange={this.onChangeInputValorMaximo}
+          ></InputsIndividuais>
+          <InputsIndividuais
+            type={"text"}
+            placeholder={"Busca por Título ou Descrição"}
+            value={this.state.inputBuscar}
+            onChange={this.onChangeInputBuscar}
+          ></InputsIndividuais>
+          <SelectIndividual
+            value={this.state.inputOrdenacao}
+            onChange={this.onChangeInputOrdenacao}
+          >
+            <option>Sem Ordenação</option>
+            <option value="menor-valor">Menor Valor</option>
+            <option value="maior-valor">Maior Valor</option>
+            <option value="titulo">Título</option>
+            <option value="prazo">Prazo</option>
+          </SelectIndividual>
+        </InputsFiltros>
+        <Main>{mapeia}</Main>
 
         <Footer>
           <p>
-            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e Sávio Ayres
-            </p>
-            </Footer>
+            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e
+            Sávio Ayres
+          </p>
+        </Footer>
       </DivContainer>
     );
   }
