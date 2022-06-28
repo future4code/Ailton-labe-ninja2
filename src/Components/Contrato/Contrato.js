@@ -28,9 +28,9 @@ const Main = styled.div`
   width: 100vw;
   height: 80vh;
   background-color: #ffe599;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
 
@@ -44,15 +44,48 @@ const Footer = styled.div`
 const BotaoHome = styled.button `
 border: 1px solid black;
 `
+
+const DivRenderizada = styled.div`
+
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  box-shadow: black 5px 5px 5px;
+  border-radius: 15px;
+  width: 15vw;
+  height: 30vh;
+
+`
+const DivRenderizadaBotao = styled.div`
+
+  display: flex;
+  justify-content: space-between;
+`
+
+
 export default class Contrato extends Component {
   render() {
 
-    // console.log(this.props.trampos)
+    // console.log(this.props.getAllJobs)
 
-    const mapeia = this.props.getAllJobs.map((nome) =>{
+    const mapeia = this.props.getAllJobs.map((nome, id) =>{
 
 
-      return <p>{nome.title}</p>
+      return <DivRenderizada key={nome.id}>
+        <h2>{nome.title}</h2>
+
+        <p>Data: Até:{nome.dueDate.slice(8,10)}-{nome.dueDate.slice(5,7)}-{nome.dueDate.slice(0,4)}</p>
+        <p>por R${nome.price}.00</p>
+
+
+        <DivRenderizadaBotao>
+        <button>Detalhes</button>
+        <button>Carrinho</button>
+        </DivRenderizadaBotao>
+        
+        </DivRenderizada>
 
 
     })
@@ -69,7 +102,7 @@ export default class Contrato extends Component {
           </BotaoHome>
         </Header>
 
-        <Main>MAIN
+        <Main>
 
           {mapeia}
 
