@@ -9,7 +9,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 `;
-
+const TamanhoFonte = styled.p `
+font-size: small;
+`
 const DivContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -89,13 +91,34 @@ const DivRenderizada = styled.div`
   width: 250px;
   height: 25vh;
   margin-top: 25px;
-`;
+  font-family: 'Tahoma';
+  `;
+
+const TituloCard = styled.h3 `
+font-family: 'Tahoma', sans-serif;
+padding-top: 19px;
+padding-bottom: 10px;
+`
 const DivRenderizadaBotao = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-left: 5px;
+  font-family: 'Tahoma';
+  padding-top: 15px;
 `;
+
+const BotaoCard = styled.button `
+border: 1px solid #bf9000;
+padding: 5px;
+border-radius: 5px;
+  width: 80px;
+  height: 20px;
+  display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 6px;
+`
 
 export default class Contrato extends Component {
   state = {
@@ -159,17 +182,17 @@ export default class Contrato extends Component {
       .map((nome) => {
         return (
           <DivRenderizada key={nome.id}>
-            <h2>{nome.title}</h2>
+            <TituloCard>{nome.title}</TituloCard>
 
             <p>
-              Até:{nome.dueDate.slice(8, 10)}-{nome.dueDate.slice(5, 7)}-
+              Até: {nome.dueDate.slice(8, 10)}-{nome.dueDate.slice(5, 7)}-
               {nome.dueDate.slice(0, 4)}
             </p>
-            <p>por R${nome.price}.00</p>
+            <TamanhoFonte>por R$ {nome.price},00</TamanhoFonte>
 
             <DivRenderizadaBotao>
-              <button onClick={() => this.props.getJobId(nome.id)}>Detalhes</button>
-              <button>Carrinho</button>
+              <BotaoCard onClick={() => this.props.getJobId(nome.id)}>Detalhes</BotaoCard>
+              <BotaoCard>Carrinho</BotaoCard>
             </DivRenderizadaBotao>
           </DivRenderizada>
         );
