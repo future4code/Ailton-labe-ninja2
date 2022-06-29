@@ -55,20 +55,26 @@ const Inputs = styled.div`
   flex-direction: column;
 `;
 
-const InputsIndividuais = styled.input`
-  border: 1px solid #bf9000;
-  margin-top: 4px;
-  width: align;
-  height: 20px;
-  border-radius: 2px;
-`;
-const DivBotao = styled.div`
-  margin-right: 15px;
-  border: none;
-  background-color: #ffd966;
-  display: flex;
-  align-items: center;
-`;
+const InputsIndividuais = styled.input `
+border: 1px solid #bf9000;
+margin-top: 4px;
+width: align;
+height: 20px;
+border-radius: 2px;
+`
+const SelectIndividual = styled.select`
+border: 1px solid #bf9000;
+width: align;
+height: 20px;
+border-radius: 2px;
+`
+const DivBotao = styled.div `
+margin-right: 15px;
+border: none;
+background-color: #ffd966;
+display: flex;
+align-items: center;
+`
 
 const BotaoHome = styled.button`
   border: 1px solid #bf9000;
@@ -217,19 +223,6 @@ export default class Cadastro extends Component {
             "dueDate":this.state.inputPrazo
         }
 
-        // console.log(this.state.inputImage)
-        if(this.state.inputImage != ''){
-
-          // localStorage.setItem('imagem', this.state.inputImage)
-
-          // for(let i = 0; i <= this.state.inputImage.length; i++){
-
-          //   localStorage.setItem(`imagem${i}`, this.state.inputImage)
-
-
-          // }
-          // this.setState({inputImage})
-          ;}
           
        
 
@@ -379,19 +372,19 @@ export default class Cadastro extends Component {
             ></InputsIndividuais>
 
 
-            <select name="pagamento" onChange={this.onChangeInputPagamento}>
-              <option value="" selected>
-                Selecione
-              </option>
-              <option value="cart-cred">Cartão Crédito</option>
-              <option value="cart-deb">Cartão Débito</option>
-              <option value="pix">Pix</option>
-              <option value="paypal">PayPal</option>
-              <option value="boleto">Boleto</option>
-            </select>
+            <SelectIndividual name="pagamento" onChange={this.onChangeInputPagamento}>
+              <option value="" selected>Selecione</option>
+              <option value="Cartão de Crédito">Cartão Crédito</option>
+              <option value="Cartão de Débito">Cartão Débito</option>
+              <option value="Pix">Pix</option>
+              <option value="Paypal">PayPal</option>
+              <option value="Boleto">Boleto</option>
+            </SelectIndividual>
+        
             <ContainerRenderizarPagamento>
             {renderizarPagamento}
             </ContainerRenderizarPagamento>
+
 
             <InputsIndividuais
               type={"date"}
