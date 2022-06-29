@@ -39,7 +39,8 @@ const Footer = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: yellow;
+  background-color: #ffd966;
+  border: 1px solid black;
   width: 200px;
   height: 30px;
   border-radius: 5px;
@@ -51,21 +52,19 @@ const Button = styled.button`
 `;
 
 const Box = styled.div`
-  
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   gap: 4px;
-  
 `;
 
 const BoxPag = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap:1rem;
+  gap: 1rem;
 `;
 
 export default class PaginaDetalhes extends React.Component {
