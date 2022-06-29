@@ -88,9 +88,13 @@ export default class App extends Component {
 
   atualizaValor = (id) => {
     this.setState({ tela: id });
+    if(id === "contrato") {
+      this.setState({ tramposDetalhes: []})
+    }
   };
 
   render() {
+  
     return <div>{this.trocaTela()}</div>;
   }
 }

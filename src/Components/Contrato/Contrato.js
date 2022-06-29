@@ -54,7 +54,6 @@ border-radius: 4px;
 `
 
 const Main = styled.div`
-  height: 100%;
   min-height: 80vh;
   background-color: #ffe599;
   display: flex;
@@ -163,7 +162,7 @@ export default class Contrato extends Component {
             <h2>{nome.title}</h2>
 
             <p>
-              Data: Até:{nome.dueDate.slice(8, 10)}-{nome.dueDate.slice(5, 7)}-
+              Até:{nome.dueDate.slice(8, 10)}-{nome.dueDate.slice(5, 7)}-
               {nome.dueDate.slice(0, 4)}
             </p>
             <p>por R${nome.price}.00</p>
