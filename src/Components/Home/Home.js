@@ -70,6 +70,7 @@ export default class Home extends Component {
             LABENINJAS{" "}
             <img
               src="https://cdn-icons-png.flaticon.com/512/94/94390.png?w=360"
+              alt="logo"
               height="40px"
               width="40px"
             />
