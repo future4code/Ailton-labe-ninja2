@@ -109,7 +109,7 @@ export default class Cadastro extends Component {
         inputTitulo: '',
         inputDescricao: '',
         inputPreco: '',
-        inputPagamento: ['card-cred'],
+        inputPagamento: '',
         inputPrazo: '',
         // imageUrl: [],
         guardaValor: false,
@@ -251,6 +251,7 @@ export default class Cadastro extends Component {
             ></InputsIndividuais>
 
             <select name="pagamento" onChange={this.onChangeInputPagamento}>
+              <option value="" selected>Selecione</option>
               <option value="cart-cred">Cartão Crédito</option>
               <option value="cart-deb">Cartão Débito</option>
               <option value="pix">Pix</option>
