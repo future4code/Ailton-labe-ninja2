@@ -111,16 +111,10 @@ export default class Cadastro extends Component {
         inputPreco: '',
         inputPagamento: ['card-cred'],
         inputPrazo: '',
-        // imageUrl: [],
-        guardaValor: false,
+        inputImage: [],
 
 
     }
-
-
-    // if(guardaValor){
-    //   return <Contrato imageUrl={this.state.imageUrl}></Contrato>
-    // }
 
 
     cadastraProfiss = () =>{
@@ -134,6 +128,22 @@ export default class Cadastro extends Component {
             "paymentMethods":this.state.inputPagamento,
             "dueDate":this.state.inputPrazo
         }
+
+        // console.log(this.state.inputImage)
+        if(this.state.inputImage != ''){
+
+          // localStorage.setItem('imagem', this.state.inputImage)
+
+          // for(let i = 0; i <= this.state.inputImage.length; i++){
+
+          //   localStorage.setItem(`imagem${i}`, this.state.inputImage)
+
+
+          // }
+          // this.setState({inputImage})
+          ;}
+          
+       
 
         axios.post(url, body,{
             headers:{
@@ -152,11 +162,11 @@ export default class Cadastro extends Component {
     }
 
 
-    // onChangeInputImage = (e) =>{
+    onChangeInputImage = (e) =>{
 
-    //   this.setState({imageUrl: e.target.value})
+      this.setState({inputImage: e.target.value})
 
-    // }
+    }
 
 
     onChangeInputTitulo  = (e) =>{
@@ -244,11 +254,19 @@ export default class Cadastro extends Component {
             ></InputsIndividuais>
 
             <InputsIndividuais
+              type={"text"}
+              placeholder={"Image-url"}
+              value={this.state.inputImage}
+              onChange={this.onChangeInputImage}
+            ></InputsIndividuais>
+
+            <InputsIndividuais
               type={"number"}
               placeholder={"R$"}
               value={this.state.inputPreco}
               onChange={this.onChangeInputPreco}
             ></InputsIndividuais>
+
 
             <select name="pagamento" onChange={this.onChangeInputPagamento}>
               <option value="cart-cred">Cartão Crédito</option>

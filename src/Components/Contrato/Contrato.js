@@ -88,7 +88,7 @@ const DivRenderizada = styled.div`
   box-shadow: #bf9000 2px 2px 2px;
   border-radius: 5px;
   width: 250px;
-  height: 25vh;
+  height: 30vh;
   margin-top: 25px;
 `;
 const DivRenderizadaBotao = styled.div`
@@ -168,6 +168,7 @@ export default class Contrato extends Component {
             </p>
             <p>por R${nome.price}.00</p>
 
+            <div><img src={localStorage.getItem('imagem')} width='80px' height='80px'></img></div>
             <DivRenderizadaBotao>
               <button onClick={() => this.props.getJobId(nome.id)}>Detalhes</button>
               <button>Carrinho</button>
