@@ -111,7 +111,7 @@ export default class PaginaDetalhes extends React.Component {
                 por <strong>R$ {this.props.tramposDetalhes.price},00</strong>
               </p>
               <p>{this.props.tramposDetalhes.description}</p>
-              <Button> Adicionar ao carrinho</Button>
+              <Button onClick={() => this.props.guardarCarrinho(this.props.AdicionarCarrinhoPaginaDetalhes)}> Adicionar ao carrinho</Button>
               <Button onClick={() => this.props.atualizaValor("contrato")}>
                 Voltar
               </Button>
