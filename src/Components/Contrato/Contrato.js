@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }`
 
-`;
+
 const TamanhoFonte = styled.p `
 font-size: small;
 `
@@ -92,7 +92,6 @@ const DivRenderizada = styled.div`
   width: 250px;
   height: 30vh;
   margin-top: 25px;
-
   font-family: 'Tahoma';
   `;
 
@@ -193,7 +192,6 @@ export default class Contrato extends Component {
             </p>
             <TamanhoFonte>por R$ {nome.price},00</TamanhoFonte>
 
-            <div><img src={localStorage.getItem('imagem')} width='80px' height='80px'></img></div>
             <DivRenderizadaBotao>
 
               <BotaoCard onClick={() => this.props.getJobId(nome.id)}>Detalhes</BotaoCard>

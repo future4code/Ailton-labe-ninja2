@@ -48,6 +48,7 @@ export default class App extends Component {
           <Carrinho
             apagarCarrinho={this.apagarCarrinho}
             carrinho={this.state.carrinho}
+            atualizaValor={this.atualizaValor}
           />
         )
       default:

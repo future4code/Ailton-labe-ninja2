@@ -136,13 +136,10 @@ export default class Cadastro extends Component {
     inputPreco: "",
     inputPagamento: [],
     inputPrazo: "",
-    // imageUrl: [],
-    guardaValor: false,
+
   };
 
-  // if(guardaValor){
-  //   return <Contrato imageUrl={this.state.imageUrl}></Contrato>
-  // }
+
 
   cadastraProfiss = () => {
     const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
@@ -172,11 +169,6 @@ export default class Cadastro extends Component {
       });
   };
 
-  // onChangeInputImage = (e) =>{
-
-  //   this.setState({imageUrl: e.target.value})
-
-  // }
 
   onChangeInputTitulo = (e) => {
     // console.log(e.target.value)
@@ -206,89 +198,6 @@ export default class Cadastro extends Component {
       this.setState({ inputPagamento: arrUnique });
     }
 
-  // componentDidMount () {
-  //     this.onChangeInputPagamento()
-  // }
-
-
-    cadastraProfiss = () =>{
-        
-        const Authorization = 'ce5895af-8d7c-488c-9062-f353648c87b8'
-        const url = 'https://labeninjas.herokuapp.com/jobs'
-        const body = {
-            "title": this.state.inputTitulo,
-            "description": this.state.inputDescricao,
-            "price": Number(this.state.inputPreco),
-            "paymentMethods":this.state.inputPagamento,
-            "dueDate":this.state.inputPrazo
-        }
-
-          
-       
-
-        axios.post(url, body,{
-            headers:{
-                Authorization: Authorization
-            }
-          }).then((response) =>{
-            alert('Trampo Criado')
-            // this.setState({guardaValor: true})
-            console.log(response)
-
-          }).catch((error)=>{
-            alert('Erro, tente novamente !')
-            console.log(error.response)
-          })
-
-    }
-
-
-    onChangeInputImage = (e) =>{
-
-      this.setState({inputImage: e.target.value})
-
-    }
-
-
-    onChangeInputTitulo  = (e) =>{
-        // console.log(e.target.value)
-        this.setState({inputTitulo: e.target.value})
-
-        }
-
-    onChangeInputDescricao  = (e) =>{
-        // console.log(e.target.value)
-
-        this.setState({inputDescricao: e.target.value})
-
-        }
-    onChangeInputPreco  = (e) =>{
-        // console.log(e.target.value)
-
-        this.setState({inputPreco: e.target.value})
-
-        }
-
-    onChangeInputPagamento  = (e) =>{
-        const Valor = e.target.value
-
-        const Copia = [...this.state.inputPagamento, Valor]
-
-        this.setState({inputPagamento: Copia})
-
-    // console.log(e.target.value) 
-
-        }
-
-    // componentDidMount () {
-    //     this.onChangeInputPagamento()
-    // }
-
-    // componentDidUpdate () {
-    //     this.onChangeInputPagamento()
-
-    // }
-
     onChangeInputPrazo  = (e) =>{
         // console.log(e.target.value)
 
@@ -296,14 +205,8 @@ export default class Cadastro extends Component {
 
         }
 
-  // componentDidUpdate () {
-  //     this.onChangeInputPagamento()
-
-  // }
-
-  onChangeInputPrazo = (e) => {
-    this.setState({ inputPrazo: e.target.value });
-  };
+ 
+        
 
   removerFormaPagamento = (id) => {
     const novoArray = this.state.inputPagamento.filter((forma, index) => {
@@ -314,7 +217,9 @@ export default class Cadastro extends Component {
 
 
   render() {
+    
     let renderizarPagamento = [];
+
     if (this.state.inputPagamento.length > 0) {
       renderizarPagamento = this.state.inputPagamento.map((forma, index) => {
         return (
@@ -355,13 +260,6 @@ export default class Cadastro extends Component {
               placeholder={"Descrição"}
               value={this.state.inputDescricao}
               onChange={this.onChangeInputDescricao}
-            ></InputsIndividuais>
-
-            <InputsIndividuais
-              type={"text"}
-              placeholder={"Image-url"}
-              value={this.state.inputImage}
-              onChange={this.onChangeInputImage}
             ></InputsIndividuais>
 
             <InputsIndividuais
