@@ -14,7 +14,8 @@ export default class App extends Component {
     tela: 'home',
     trampos: [],
     tramposDetalhes: [],
-    carrinho: []
+    carrinho: [],
+    AdicionarCarrinhoPaginaDetalhes: "",
   }
 
   trocaTela = () => {
@@ -26,6 +27,7 @@ export default class App extends Component {
       case 'contrato':
         return (
           <Contrato
+
             trocaTelaCarrinho={this.trocaTelaCarrinho}
             guardarCarrinho={this.guardarCarrinho}
             getJobId={this.getJobId}
@@ -37,6 +39,8 @@ export default class App extends Component {
       case 'detalhe':
         return (
           <PaginaDetalhes
+          AdicionarCarrinhoPaginaDetalhes={this.state.AdicionarCarrinhoPaginaDetalhes}
+          guardarCarrinho={this.guardarCarrinho}
             tramposDetalhes={this.state.tramposDetalhes}
             atualizaValor={this.atualizaValor}
           >
@@ -63,8 +67,8 @@ export default class App extends Component {
   componentDidUpdate() {
     this.getAllJobs()
   }
-  getJobId = (id) => {
-    const url = `https://labeninjas.herokuapp.com/jobs/${id}`
+  getJobId = (nome) => {
+    const url = `https://labeninjas.herokuapp.com/jobs/${nome.id}`
     axios
       .get(url, {
         headers: {
@@ -78,7 +82,7 @@ export default class App extends Component {
         console.log(error.response.data.message)
       })
     this.atualizaValor('detalhe')
-    console.log(id)
+    this.setState({ AdicionarCarrinhoPaginaDetalhes: nome})
   }
 
   getAllJobs = () => {
@@ -105,9 +109,9 @@ export default class App extends Component {
     }
   }
 
-  guardarCarrinho = (id) => {
+  guardarCarrinho = (nome) => {
     const carrinhoAntigo = this.state.carrinho
-    const carrinhoNovo = [...carrinhoAntigo, id]
+    const carrinhoNovo = [...carrinhoAntigo, nome]
     this.setState({ carrinho: carrinhoNovo })
 
     alert('Funcionou')

@@ -194,7 +194,7 @@ export default class Contrato extends Component {
 
             <DivRenderizadaBotao>
 
-              <BotaoCard onClick={() => this.props.getJobId(nome.id)}>Detalhes</BotaoCard>
+              <BotaoCard onClick={() => this.props.getJobId(nome)}>Detalhes</BotaoCard>
               <BotaoCard onClick={() => this.props.guardarCarrinho(nome)}>Adicionar ao Carrinho</BotaoCard>
 
             </DivRenderizadaBotao>
@@ -206,10 +206,7 @@ export default class Contrato extends Component {
       <DivContainer>
         <GlobalStyle></GlobalStyle>
         <Header>
-          Contrato
-          <BotaoHome onClick={() => this.props.atualizaValor('home')}>
-            Home
-          </BotaoHome>
+          <p onClick={() => this.props.atualizaValor('home')}>Labeninjas</p>
           <button onClick={this.props.trocaTelaCarrinho}>Carrinho</button>
         </Header>
 

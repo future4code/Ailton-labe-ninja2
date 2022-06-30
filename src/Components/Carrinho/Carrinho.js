@@ -59,38 +59,15 @@ const BotaoCarrinho = styled.button`
 `;
 
 export default class Carrinho extends Component {
-  state = {
-    totalPreco: 0,
-    guardarPreco: []
-  };
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.guardarPreco !== prevState.guardarPreco) {
-  //     this.guardarPreco();
-  //   }
-  // }
-
-  componentDidMount() {
-    this.guardarPreco();
-  }
-
-  guardarPreco = () => {
-    const itensPrice = this.props.carrinho.map((itens) => {
-      return itens.price;
-    });
-    this.setState({ guardarPreco: itensPrice})
-    this.somarPrecos(itensPrice);
-  };
-
-  somarPrecos = (array) => {
-    let total = 0;
-    for (let itens of array) {
-      total = total + itens;
-    }
-    this.setState({ totalPreco: total });
-  };
 
   render() {
+
+    const somaPrecos = this.props.carrinho
+      .map((job) => {
+        return job.price
+      })
+      .reduce((prev, curr) => prev + curr, 0);
+
     const itensCarrinho = this.props.carrinho.map((itens) => {
       return (
         <ContainerGeral>
@@ -108,16 +85,18 @@ export default class Carrinho extends Component {
     return (
       <div>
         <Header>
-          <a onClick={() => this.props.atualizaValor("home")}>Header</a>
+          <a onClick={() => this.props.atualizaValor("home")}>Labeninjas</a>
         </Header>
         <GlobalStyle></GlobalStyle>
         <Main>
-          <p>Preço total: {this.state.totalPreco}</p>
-          Main
-          <div>{itensCarrinho}</div>A soma dos produtos são:{" "}
-          {/* {this.state.totalPrice} */}
+          {this.props.carrinho.length === 0 ?
+          <p>Carrinho vazio</p>
+           :
+          <div>{itensCarrinho}
+          A soma dos produtos é: R$ {somaPrecos},00
+          </div>
+          }
         </Main>
-
         <Footer>Footer</Footer>
       </div>
     );
