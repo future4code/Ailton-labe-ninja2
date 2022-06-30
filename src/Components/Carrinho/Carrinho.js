@@ -60,7 +60,14 @@ const BotaoCarrinho = styled.button`
 
 export default class Carrinho extends Component {
 
+
+
+
   render() {
+
+
+
+   
 
     const somaPrecos = this.props.carrinho
       .map((job) => {
@@ -93,7 +100,8 @@ export default class Carrinho extends Component {
           <p>Carrinho vazio</p>
            :
           <div>{itensCarrinho}
-          A soma dos produtos é: R$ {somaPrecos},00
+          A soma dos serviços é: R$ {somaPrecos},00
+          <button onClick={this.props.onClickContratar}>Contratar serviço</button>
           </div>
           }
         </Main>

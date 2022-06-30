@@ -16,6 +16,7 @@ export default class App extends Component {
     tramposDetalhes: [],
     carrinho: [],
     AdicionarCarrinhoPaginaDetalhes: "",
+    tarefaAdicionada: false
   }
 
   trocaTela = () => {
@@ -53,6 +54,7 @@ export default class App extends Component {
             apagarCarrinho={this.apagarCarrinho}
             carrinho={this.state.carrinho}
             atualizaValor={this.atualizaValor}
+            onClickContratar={this.onClickContratar}
           />
         )
       default:
@@ -113,6 +115,13 @@ export default class App extends Component {
     const carrinhoAntigo = this.state.carrinho
     const carrinhoNovo = [...carrinhoAntigo, nome]
     this.setState({ carrinho: carrinhoNovo })
+    this.setState({tarefaAdicionada: true})
+
+    if(this.state.tarefaAdicionada){
+
+      return
+
+    }
 
     alert('Funcionou')
   }
@@ -128,6 +137,13 @@ export default class App extends Component {
       return id !== obj.id
     })
     this.setState({ carrinho: novoArrayCarrinho })
+  }
+
+  onClickContratar = () =>{
+
+    alert(`Serviços contratados`)
+    this.setState({carrinho: []})
+    
   }
 
   render() {

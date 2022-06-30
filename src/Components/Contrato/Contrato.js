@@ -195,6 +195,7 @@ export default class Contrato extends Component {
             <DivRenderizadaBotao>
 
               <BotaoCard onClick={() => this.props.getJobId(nome)}>Detalhes</BotaoCard>
+              if(){}
               <BotaoCard onClick={() => this.props.guardarCarrinho(nome)}>Adicionar ao Carrinho</BotaoCard>
 
             </DivRenderizadaBotao>
