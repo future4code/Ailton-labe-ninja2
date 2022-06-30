@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -23,7 +22,6 @@ const Header = styled.div`
   padding-left: 15px;
 `;
 
-
 const Main = styled.div`
   width: 100vw;
   height: 80vh;
@@ -34,7 +32,6 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 
 const Footer = styled.div`
   width: 100vw;
@@ -47,7 +44,7 @@ const Footer = styled.div`
 const ContainerGeral = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 const CardContainer = styled.div`
   border: 1px solid black;
   display: flex;
@@ -55,75 +52,45 @@ const CardContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-`
+`;
 const BotaoCarrinho = styled.button`
   border: 1px solid black;
   height: 5vh;
-`
-
+`;
 
 export default class Carrinho extends Component {
-
   state = {
-    totalPrice: 0,
-    guardaPreco: [],
+    totalPreco: 0,
+    guardarPreco: []
+  };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.guardarPreco !== prevState.guardarPreco) {
+  //     this.guardarPreco();
+  //   }
+  // }
+
+  componentDidMount() {
+    this.guardarPreco();
   }
 
-  // funcaoSomar = () =>this.props.carrinho.map((itens) => {
-  //   let soma = 0
-  //   const PrecoAntigo = this.state.guardaPreco
-  //       const PrecoNovo = [...PrecoAntigo, itens.price]
-  //       this.setState({guardaPreco: PrecoNovo})
+  guardarPreco = () => {
+    const itensPrice = this.props.carrinho.map((itens) => {
+      return itens.price;
+    });
+    this.setState({ guardarPreco: itensPrice})
+    this.somarPrecos(itensPrice);
+  };
 
-  //     for ( let preco of this.state.guardaPreco){
+  somarPrecos = (array) => {
+    let total = 0;
+    for (let itens of array) {
+      total = total + itens;
+    }
+    this.setState({ totalPreco: total });
+  };
 
-  //       return soma += preco
-
-  //     }
-
-  //     this.setState({totalPrice: soma})
-      //  this.state.guardaPrecos2.forEach(funcSoma);
-       
-      // let funcSoma = ((item)=> {
-      //   soma += item
-      //  })
-
-      //  
-      // console.log(this.state.guardaPreco)
-    
-  // })
- 
-    render() {
-
-
-    //  console.log(guardaPreco) 
-      // console.log(this.props.carrinho)
-      // const itensPrice = this.props.carrinho.map((itens) => {
-      //   let soma = 0
-      //   const PrecoAntigo = this.state.guardaPreco
-      //       const PrecoNovo = [...PrecoAntigo, itens.price]
-      //       this.setState({guardaPreco: PrecoNovo})
-  
-      //     for ( let preco of this.state.guardaPreco){
-
-      //       return soma += preco
-
-      //     }
-
-          // this.setState({totalPrice: soma})
-          //  this.state.guardaPrecos2.forEach(funcSoma);
-           
-          // let funcSoma = ((item)=> {
-          //   soma += item
-          //  })
-  
-          //  
-          // console.log(this.state.guardaPreco)
-        
-      // })
-
-      // console.log(this.guardaPrecos2)
-
+  render() {
     const itensCarrinho = this.props.carrinho.map((itens) => {
       return (
         <ContainerGeral>
@@ -135,21 +102,24 @@ export default class Carrinho extends Component {
             </BotaoCarrinho>
           </CardContainer>
         </ContainerGeral>
-      )})
-
+      );
+    });
 
     return (
       <div>
-        <Header><a onClick={() => this.props.atualizaValor("home")}>Header</a></Header> 
-         <GlobalStyle></GlobalStyle>
-
-        <Main>Main
-        <div>{itensCarrinho}</div>
-        A soma dos produtos são: {this.state.totalPrice}
+        <Header>
+          <a onClick={() => this.props.atualizaValor("home")}>Header</a>
+        </Header>
+        <GlobalStyle></GlobalStyle>
+        <Main>
+          <p>Preço total: {this.state.totalPreco}</p>
+          Main
+          <div>{itensCarrinho}</div>A soma dos produtos são:{" "}
+          {/* {this.state.totalPrice} */}
         </Main>
-      
-      <Footer>Footer</Footer>
+
+        <Footer>Footer</Footer>
       </div>
-    )
+    );
   }
 }
