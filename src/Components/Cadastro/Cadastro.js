@@ -136,13 +136,10 @@ export default class Cadastro extends Component {
     inputPreco: "",
     inputPagamento: [],
     inputPrazo: "",
-    // imageUrl: [],
-    guardaValor: false,
+
   };
 
-  // if(guardaValor){
-  //   return <Contrato imageUrl={this.state.imageUrl}></Contrato>
-  // }
+
 
   cadastraProfiss = () => {
     const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
@@ -172,11 +169,6 @@ export default class Cadastro extends Component {
       });
   };
 
-  // onChangeInputImage = (e) =>{
-
-  //   this.setState({imageUrl: e.target.value})
-
-  // }
 
   onChangeInputTitulo = (e) => {
     // console.log(e.target.value)
@@ -206,18 +198,15 @@ export default class Cadastro extends Component {
       this.setState({ inputPagamento: arrUnique });
     }
 
-  // componentDidMount () {
-  //     this.onChangeInputPagamento()
-  // }
+    onChangeInputPrazo  = (e) =>{
+        // console.log(e.target.value)
 
-  // componentDidUpdate () {
-  //     this.onChangeInputPagamento()
+        this.setState({inputPrazo: e.target.value})
 
-  // }
+        }
 
-  onChangeInputPrazo = (e) => {
-    this.setState({ inputPrazo: e.target.value });
-  };
+ 
+        
 
   removerFormaPagamento = (id) => {
     const novoArray = this.state.inputPagamento.filter((forma, index) => {
@@ -226,8 +215,11 @@ export default class Cadastro extends Component {
     this.setState({ inputPagamento: novoArray})
   }
 
+
   render() {
+    
     let renderizarPagamento = [];
+
     if (this.state.inputPagamento.length > 0) {
       renderizarPagamento = this.state.inputPagamento.map((forma, index) => {
         return (

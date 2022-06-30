@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }`
 
-`;
+
 const TamanhoFonte = styled.p `
 font-size: small;
 `
@@ -90,9 +90,8 @@ const DivRenderizada = styled.div`
   box-shadow: #bf9000 2px 2px 2px;
   border-radius: 5px;
   width: 250px;
-  height: 25vh;
+  height: 30vh;
   margin-top: 25px;
-
   font-family: 'Tahoma';
   `;
 
