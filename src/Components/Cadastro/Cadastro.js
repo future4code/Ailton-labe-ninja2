@@ -55,26 +55,26 @@ const Inputs = styled.div`
   flex-direction: column;
 `;
 
-const InputsIndividuais = styled.input `
-border: 1px solid #bf9000;
-margin-top: 4px;
-width: align;
-height: 20px;
-border-radius: 2px;
-`
+const InputsIndividuais = styled.input`
+  border: 1px solid #bf9000;
+  margin-top: 4px;
+  width: align;
+  height: 20px;
+  border-radius: 2px;
+`;
 const SelectIndividual = styled.select`
-border: 1px solid #bf9000;
-width: align;
-height: 20px;
-border-radius: 2px;
-`
-const DivBotao = styled.div `
-margin-right: 15px;
-border: none;
-background-color: #ffd966;
-display: flex;
-align-items: center;
-`
+  border: 1px solid #bf9000;
+  width: align;
+  height: 20px;
+  border-radius: 2px;
+`;
+const DivBotao = styled.div`
+  margin-right: 15px;
+  border: none;
+  background-color: #ffd966;
+  display: flex;
+  align-items: center;
+`;
 
 const BotaoHome = styled.button`
   border: 1px solid #bf9000;
@@ -109,25 +109,25 @@ const ContainerFormasPagamento = styled.div`
   justify-content: space-between;
   width: 130px;
   align-items: center;
-`
+`;
 
 const ContainerRenderizarPagamento = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 3px;
-`
+`;
 
 const ButtonFormasPagamento = styled.button`
   border: none;
-  background-color: #ffe599; 
+  background-color: #ffe599;
   width: 20px;
   &:hover {
     cursor: pointer;
     border: 1px solid #ffd966;
     background-color: #ffd966;
   }
-`
+`;
 
 export default class Cadastro extends Component {
   state = {
@@ -136,10 +136,7 @@ export default class Cadastro extends Component {
     inputPreco: "",
     inputPagamento: [],
     inputPrazo: "",
-
   };
-
-
 
   cadastraProfiss = () => {
     const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
@@ -159,75 +156,59 @@ export default class Cadastro extends Component {
         },
       })
       .then((response) => {
-        alert("Trampo Criado");
-        // this.setState({guardaValor: true})
-        console.log(response);
+        alert("Serviço cadastrado");
       })
       .catch((error) => {
-        alert("Erro, tente novamente !");
-        console.log(error.response);
+        alert("Erro, tente novamente!");
       });
+      this.setState({ inputTitulo: "", inputDescricao: "", inputPreco: "", inputPagamento: [], inputPrazo: new Date()})
   };
 
-
   onChangeInputTitulo = (e) => {
-    // console.log(e.target.value)
     this.setState({ inputTitulo: e.target.value });
   };
 
   onChangeInputDescricao = (e) => {
-    // console.log(e.target.value)
-
     this.setState({ inputDescricao: e.target.value });
   };
   onChangeInputPreco = (e) => {
-    // console.log(e.target.value)
-
     this.setState({ inputPreco: e.target.value });
   };
 
   onChangeInputPagamento = (e) => {
-    // if (this.state.inputPagamento.includes(e.target.value)) {
-    //   const index = this.state.inputPagamento.indexOf(e.target.value);
-    //   this.state.inputPagamento.splice(index, 1);
-    // } else {
-      const Valor = e.target.value;
-      const Copia = [...this.state.inputPagamento, Valor];
-      const arrUnique = [...new Set(Copia)];
+    const Valor = e.target.value;
+    const Copia = [...this.state.inputPagamento, Valor];
+    const arrUnique = [...new Set(Copia)];
 
-      this.setState({ inputPagamento: arrUnique });
-    }
+    this.setState({ inputPagamento: arrUnique });
+  };
 
-    onChangeInputPrazo  = (e) =>{
-        // console.log(e.target.value)
-
-        this.setState({inputPrazo: e.target.value})
-
-        }
-
- 
-        
+  onChangeInputPrazo = (e) => {
+    this.setState({ inputPrazo: e.target.value });
+  };
 
   removerFormaPagamento = (id) => {
     const novoArray = this.state.inputPagamento.filter((forma, index) => {
-      return id !== index
-    })
-    this.setState({ inputPagamento: novoArray})
-  }
-
+      return id !== index;
+    });
+    this.setState({ inputPagamento: novoArray });
+  };
 
   render() {
-    
     let renderizarPagamento = [];
 
     if (this.state.inputPagamento.length > 0) {
       renderizarPagamento = this.state.inputPagamento.map((forma, index) => {
         return (
-        <ContainerFormasPagamento>
-          <p>{forma}</p>
-          <ButtonFormasPagamento onClick={() => this.removerFormaPagamento(index)}>x</ButtonFormasPagamento>
-        </ContainerFormasPagamento>
-        )
+          <ContainerFormasPagamento>
+            <p>{forma}</p>
+            <ButtonFormasPagamento
+              onClick={() => this.removerFormaPagamento(index)}
+            >
+              x
+            </ButtonFormasPagamento>
+          </ContainerFormasPagamento>
+        );
       });
     }
 
@@ -235,7 +216,11 @@ export default class Cadastro extends Component {
       <DivContainer>
         <GlobalStyle></GlobalStyle>
         <Header>
+<<<<<<< HEAD
           <a onClick={() => this.props.atualizaValor("home")}>Cadastro</a>
+=======
+          <p onClick={() => this.props.atualizaValor("home")}>Cadastro</p>
+>>>>>>> 66fe84544c27ed31f291cf961a246d3df5228ce8
         </Header>
 
         <Main>
@@ -264,20 +249,23 @@ export default class Cadastro extends Component {
               onChange={this.onChangeInputPreco}
             ></InputsIndividuais>
 
-
-            <SelectIndividual name="pagamento" onChange={this.onChangeInputPagamento}>
-              <option value="" selected>Selecione</option>
+            <SelectIndividual
+              name="pagamento"
+              onChange={this.onChangeInputPagamento}
+            >
+              <option value="" selected>
+                Selecione
+              </option>
               <option value="Cartão de Crédito">Cartão Crédito</option>
               <option value="Cartão de Débito">Cartão Débito</option>
               <option value="Pix">Pix</option>
               <option value="Paypal">PayPal</option>
               <option value="Boleto">Boleto</option>
             </SelectIndividual>
-        
-            <ContainerRenderizarPagamento>
-            {renderizarPagamento}
-            </ContainerRenderizarPagamento>
 
+            <ContainerRenderizarPagamento>
+              {renderizarPagamento}
+            </ContainerRenderizarPagamento>
 
             <InputsIndividuais
               type={"date"}
