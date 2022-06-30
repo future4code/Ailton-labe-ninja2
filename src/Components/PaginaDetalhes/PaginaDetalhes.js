@@ -69,7 +69,7 @@ const BoxPag = styled.div`
 
 export default class PaginaDetalhes extends React.Component {
   render() {
-    const payList = this.props.tramposDetalhes.paymentMethods?.map((list) => {
+    const payList = this.props.servicosDetalhes.paymentMethods?.map((list) => {
       return <div key={list}> {list} </div>;
     });
 
@@ -97,20 +97,20 @@ export default class PaginaDetalhes extends React.Component {
           </TituloHome>
         </Header>
         <Container>
-          {this.props.tramposDetalhes.title &&
-          this.props.tramposDetalhes.paymentMethods ? (
+          {this.props.servicosDetalhes.title &&
+          this.props.servicosDetalhes.paymentMethods ? (
             <Container>
-              <h1>{this.props.tramposDetalhes.title}</h1>
+              <h1>{this.props.servicosDetalhes.title}</h1>
               <BoxPag>
                 <strong>Aceita:</strong>
                 <Box>{payList}</Box>
               </BoxPag>
               <p>
-                {this.props.tramposDetalhes.dueDate &&
-                  formateData(this.props.tramposDetalhes.dueDate)}{" "}
-                por <strong>R$ {this.props.tramposDetalhes.price},00</strong>
+                {this.props.servicosDetalhes.dueDate &&
+                  formateData(this.props.servicosDetalhes.dueDate)}{" "}
+                por <strong>R$ {this.props.servicosDetalhes.price},00</strong>
               </p>
-              <p>{this.props.tramposDetalhes.description}</p>
+              <p>{this.props.servicosDetalhes.description}</p>
               <Button onClick={() => this.props.guardarCarrinho(this.props.AdicionarCarrinhoPaginaDetalhes)}> Adicionar ao carrinho</Button>
               <Button onClick={() => this.props.atualizaValor("contrato")}>
                 Voltar
