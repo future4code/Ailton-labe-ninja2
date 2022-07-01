@@ -54,6 +54,8 @@ export default class App extends Component {
       case "carrinho":
         return (
           <Carrinho
+            updateMultipleJobNotTaken={this.updateMultipleJobNotTaken}
+            getAllJobs={this.getAllJobs}
             updateJobNotTaken={this.updateJobNotTaken}
             servicos={this.state.servicos}
             atualizaValor={this.atualizaValor}
@@ -122,6 +124,25 @@ export default class App extends Component {
       })
       .catch((error) => {
         alert("Erro, tente novamente!");
+      });
+  };
+
+  updateMultipleJobNotTaken = (id) => {
+    const body = {
+      taken: false,
+    };
+    const url = `https://labeninjas.herokuapp.com/jobs/${id}`;
+    axios
+      .post(url, body, {
+        headers: {
+          Authorization: "ce5895af-8d7c-488c-9062-f353648c87b8",
+        },
+      })
+      .then((response) => {
+        // alert("Serviço retirado do carrinho");
+      })
+      .catch((error) => {
+        alert("Tente novamente mais tarde.");
       });
   };
 
