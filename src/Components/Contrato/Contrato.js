@@ -189,13 +189,6 @@ export default class Contrato extends Component {
             </p>
             <TamanhoFonte>por R$ {nome.price},00</TamanhoFonte>
             <DivRenderizadaBotao>
-<<<<<<< HEAD
-
-              <BotaoCard onClick={() => this.props.getJobId(nome)}>Detalhes</BotaoCard>
-              if(){}
-              <BotaoCard onClick={() => this.props.guardarCarrinho(nome)}>Adicionar ao Carrinho</BotaoCard>
-
-=======
               <BotaoCard onClick={() => this.props.getJobId(nome)}>
                 Detalhes
               </BotaoCard>
@@ -206,7 +199,6 @@ export default class Contrato extends Component {
                   Adicionar ao Carrinho
                 </BotaoCard>
               )}
->>>>>>> 66fe84544c27ed31f291cf961a246d3df5228ce8
             </DivRenderizadaBotao>
           </DivRenderizada>
         );

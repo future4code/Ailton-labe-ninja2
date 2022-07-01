@@ -65,18 +65,10 @@ export default class Carrinho extends Component {
 
   render() {
 
-<<<<<<< HEAD
-
-
-   
-
-    const somaPrecos = this.props.carrinho
-=======
     const somaPrecos = this.props.servicos
     .filter((itens) => {
       return itens.taken
     })
->>>>>>> 66fe84544c27ed31f291cf961a246d3df5228ce8
       .map((job) => {
         return job.price
       })
@@ -100,6 +92,7 @@ export default class Carrinho extends Component {
       );
     });
 
+   
     return (
       <div>
         <Header>
@@ -111,13 +104,14 @@ export default class Carrinho extends Component {
           <p>Carrinho vazio</p>
            :
           <div>{itensCarrinho}
-          A soma dos serviços é: R$ {somaPrecos},00
-          <button onClick={this.props.onClickContratar}>Contratar serviço</button>
+          A soma dos produtos é: R$ {somaPrecos},00
+             <div><button onClick={this.props.onClickContratar}>Finalizar Compra</button></div>
           </div>
           }
+       
         </Main>
         <Footer>Footer</Footer>
       </div>
-    );
+    )
   }
 }

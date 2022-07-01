@@ -216,11 +216,7 @@ export default class Cadastro extends Component {
       <DivContainer>
         <GlobalStyle></GlobalStyle>
         <Header>
-<<<<<<< HEAD
-          <a onClick={() => this.props.atualizaValor("home")}>Cadastro</a>
-=======
           <p onClick={() => this.props.atualizaValor("home")}>Cadastro</p>
->>>>>>> 66fe84544c27ed31f291cf961a246d3df5228ce8
         </Header>
 
         <Main>
