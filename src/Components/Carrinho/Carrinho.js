@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-
+import { Button, ButtonGroup, Stack, Icon, HStack, VStack} from "@chakra-ui/react";
+import { FaTrash } from "react-icons/fa";
+import { SiVerizon } from "react-icons/si";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -13,8 +16,8 @@ const GlobalStyle = createGlobalStyle`
 
 const Header = styled.div`
   font-family: "Bebas Neue";
-  height: 10vh;
-  background-color: #ffd966;
+  height: 13vh;
+  background-color: #38b2ac;
   font-size: 220%;
   display: flex;
   align-items: center;
@@ -25,7 +28,7 @@ const Header = styled.div`
 const Main = styled.div`
   width: 100vw;
   height: 80vh;
-  background-color: #ffe599;
+  background-color: #e6fffa;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -35,8 +38,8 @@ const Main = styled.div`
 
 const Footer = styled.div`
   width: 100vw;
-  height: 10vh;
-  background-color: #ffd966;
+  height: 7vh;
+  background-color: #38b2ac;
   display: flex;
   align-items: flex-end;
   justify-content: end;
@@ -45,18 +48,76 @@ const ContainerGeral = styled.div`
   display: flex;
   justify-content: center;
 `;
-const CardContainer = styled.div`
-  border: 1px solid black;
+
+
+const DivCard = styled.div`
+  overflow: hidden;
+  padding: 0 0 32px;
+  margin: 22px auto 0;
+  width: 300px;
+  font-family: Quicksand, arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
   display: flex;
-  width: 20vw;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 5px;
+  gap: 5px;
+
+  &:hover{ position: relative; 
+             top: -5px;
+            }
+             
 `;
-const BotaoCarrinho = styled.button`
-  border: 1px solid black;
-  height: 5vh;
-`;
+
+const TitleCard = styled.h2`
+
+font-weight: bold;
+margin-top: 6px;
+
+`
+const PriceCard = styled.p`
+
+font-weight: bold;
+margin-top: 2px;
+display: inline;
+`
+
+const DivSomatoria = styled.div`
+
+overflow: hidden;
+  height: 80px;
+  width: 300px;
+  font-family: Quicksand, arial, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+
+  &:hover{ position: relative; 
+             top: -5px;
+            } 
+`
+const DivContainer2 = styled.div`
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+`
+const DivCarVazio = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`
+const TextVazio = styled.p`
+
+  font-weight: bold;
+  font-size: 25px;
+
+`
 
 export default class Carrinho extends Component {
 
@@ -66,6 +127,9 @@ export default class Carrinho extends Component {
     }
     alert("Compra finalizada!");
   };
+
+
+
 
   render() {
     const arrayServicosCarrinho = this.props.servicos
@@ -92,15 +156,25 @@ export default class Carrinho extends Component {
       .map((itens) => {
         return (
           <ContainerGeral>
-            <CardContainer>
-              <h2>{itens.title}</h2>
-              <p>R$: {itens.price},00</p>
-              <BotaoCarrinho
-                onClick={() => this.props.updateJobNotTaken(itens.id)}
-              >
-                Remover
-              </BotaoCarrinho>
-            </CardContainer>
+            <DivCard>
+              <TitleCard>{itens.title}</TitleCard>
+              <p><PriceCard>Preço:</PriceCard> R${itens.price},00</p>
+
+
+              <Button
+              leftIcon={<Icon as={FaTrash} />}
+              colorScheme="teal"
+              variant="solid"
+              width={130}
+              h={10}
+              fontWeight='thin'
+              fontSize="16"
+              onClick={() => this.props.updateJobNotTaken(itens.id)}
+            >
+              Remover
+            </Button>
+
+            </DivCard>
           </ContainerGeral>
         );
       });
@@ -109,20 +183,46 @@ export default class Carrinho extends Component {
     return (
       <div>
         <Header>
-          <a onClick={() => this.props.atualizaValor("home")}>Labeninjas</a>
+          <a onClick={() => this.props.atualizaValor("home")}>Carrinho</a>
         </Header>
         <GlobalStyle></GlobalStyle>
         <Main>
           {itensCarrinho.length === 0 ? (
-            <p>Carrinho vazio</p>
+            <DivContainer2>
+            <DivCarVazio><TextVazio>Carrinho Vazio</TextVazio>
+             <Icon as={AiOutlineShoppingCart}
+             width={100}
+             height={100}
+             
+             />
+            </DivCarVazio>
+            </DivContainer2>
+           
           ) : (
             <div>
-              <p>{itensCarrinho}A soma dos produtos é: R$ {somaPrecos},00</p>
-              <button onClick={() => this.removerFinalizandoCompra(arrayServicosCarrinho)}>Finalizar compra</button>
-            </div>
+
+           {itensCarrinho}
+
+            <DivSomatoria>
+              <p>A soma dos produtos é: <PriceCard>R$ {somaPrecos},00</PriceCard></p>
+              <Button
+              leftIcon={<Icon as={SiVerizon} />}
+              colorScheme="teal"
+              variant="solid"
+              width={160}
+              h={10}
+              fontWeight='thin'
+              fontSize="16"
+              onClick={() => this.removerFinalizandoCompra(arrayServicosCarrinho)}
+            >
+              Finalizar Compra
+            </Button>
+            </DivSomatoria>
+             </div>
           )}
+
         </Main>
-        <Footer>Footer</Footer>
+        <Footer></Footer>
       </div>
     )
   }
