@@ -25,21 +25,6 @@ const DivContainer = styled.div`
   }
 `;
 
-const BotaoHome = styled.button`
-  border: 1px solid #bf9000;
-  margin-left: 5px;
-  width: 250px;
-  height: 80px;
-  border-radius: 6px;
-`;
-
-const BotaoCentralizado = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 15px;
-`;
-
 const Header = styled.div`
   width: 100vw;
   height: 13vh;
@@ -47,7 +32,7 @@ const Header = styled.div`
   letter-spacing: 3px;
 `;
 const TituloHome = styled.header`
-  font-size: 85px;
+  font-size: 75px;
   font-family: "Bebas Neue";
   color: white;
   display: flex;
@@ -56,6 +41,7 @@ const TituloHome = styled.header`
   justify-content: center;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+  text-shadow: black 0.1em 0.1em 0.2em;
 `;
 
 const ImagemTitulo = styled.img`
@@ -102,15 +88,15 @@ export default class Home extends Component {
           <TituloHome> LABENINJAS </TituloHome>
         </Header>
         <Main>
-          <ImagemTitulo src={iconeNinja} />
-          <TextoTitulo>O talento certo no momento certo!</TextoTitulo>
+          <ImagemTitulo src={iconeNinja}/>
+          <TextoTitulo><b>O talento certo no momento certo!</b></TextoTitulo>
           <Stack direction="row" spacing={4}>
             <Button
               leftIcon={<Icon as={FaUserNinja} />}
               colorScheme="teal"
               variant="solid"
               width={220}
-              h={16}
+              h={12}
               fontWeight='thin'
               fontSize="25"
               onClick={() => this.props.atualizaValor("cadastro")}
@@ -122,7 +108,7 @@ export default class Home extends Component {
               colorScheme="teal"
               variant="solid"
               width={220}
-              h={16}
+              h={12}
               fontWeight='thin'
               fontSize="25"
               onClick={() => this.props.atualizaValor("contrato")}

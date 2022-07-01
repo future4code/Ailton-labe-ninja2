@@ -3,6 +3,18 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Contrato from "../Contrato/Contrato";
+import { Input, InputGroup, InputLeftElement, Select } from "@chakra-ui/react";
+import { BiCheck } from "react-icons/bi";
+import { Button, ButtonGroup, Stack, Icon } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+  extendTheme,
+  Box
+} from "@chakra-ui/react";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -23,20 +35,22 @@ const DivContainer = styled.div`
 `;
 
 const Header = styled.div`
+  width: 100vw;
+  height: 13vh;
+  background-color: #38b2ac;
+  letter-spacing: 1px;
   font-family: "Bebas Neue";
-  height: 10vh;
-  background-color: #ffd966;
-  font-size: 220%;
   display: flex;
+  padding-left: 15px;
   align-items: center;
   justify-content: space-between;
-  padding-left: 15px;
+  font-size: 35px;
 `;
 
 const Main = styled.div`
   width: 100vw;
   height: 80vh;
-  background-color: #ffe599;
+  background-color: #e6fffa;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -48,6 +62,7 @@ const Titulo = styled.div`
   font-size: 250%;
   margin-bottom: 20px;
   margin-top: 10px;
+  letter-spacing: 3px;
 `;
 
 const Inputs = styled.div`
@@ -91,12 +106,13 @@ const BotaoCadastrar = styled.button`
 `;
 
 const Footer = styled.div`
-  width: 100vw;
-  height: 10vh;
-  background-color: #ffd966;
+  height: 7vh;
+  background-color: #38b2ac;
   display: flex;
   align-items: flex-end;
   justify-content: end;
+  font-size: small;
+  font-family: "Tahoma";
 `;
 
 const TextoFooter = styled.p`
@@ -119,16 +135,25 @@ const ContainerRenderizarPagamento = styled.div`
 `;
 
 const ButtonFormasPagamento = styled.button`
-  border: none;
-  background-color: #ffe599;
-  width: 20px;
+  background-color: #e6fffa;
+  width: 15px;
+  height: 15px;
+  border: 1px dashed #38b2ac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+  padding-bottom: 2px;
   &:hover {
     cursor: pointer;
-    border: 1px solid #ffd966;
-    background-color: #ffd966;
+    border: 1px solid #285e61;
+    background-color: #e6fffa;
   }
 `;
 
+const activeLabelStyles = {
+  transform: "scale(0.85) translateY(-24px)"};
+ 
 export default class Cadastro extends Component {
   state = {
     inputTitulo: "",
@@ -161,7 +186,13 @@ export default class Cadastro extends Component {
       .catch((error) => {
         alert("Erro, tente novamente!");
       });
-      this.setState({ inputTitulo: "", inputDescricao: "", inputPreco: "", inputPagamento: [], inputPrazo: new Date()})
+    this.setState({
+      inputTitulo: "",
+      inputDescricao: "",
+      inputPreco: "",
+      inputPagamento: [],
+      inputPrazo: new Date(),
+    });
   };
 
   onChangeInputTitulo = (e) => {
@@ -224,29 +255,73 @@ export default class Cadastro extends Component {
             <p>Cadastre um serviço</p>
           </Titulo>
           <Inputs>
-            <InputsIndividuais
+          <Stack spacing={4}>
+          <FormControl variant="floating" id="first-name">
+            <Input
               type={"text"}
-              placeholder={"Título"}
+              isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              placeholder=" "
+              size="sm"
+              borderRadius="4"
               value={this.state.inputTitulo}
               onChange={this.onChangeInputTitulo}
-            ></InputsIndividuais>
+            ></Input>
 
-            <InputsIndividuais
+              <FormLabel color="gray.500">Título</FormLabel>
+            </FormControl>
+
+            <FormControl variant="floating" id="first-name">
+            <Input
               type={"text"}
-              placeholder={"Descrição"}
+              isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              placeholder=" "
+              size="sm"
+              borderRadius="4"
               value={this.state.inputDescricao}
               onChange={this.onChangeInputDescricao}
-            ></InputsIndividuais>
+            ></Input>
+<FormLabel color="gray.500">Descrição</FormLabel>
+            </FormControl>
 
-            <InputsIndividuais
-              type={"number"}
-              placeholder={"R$"}
-              value={this.state.inputPreco}
-              onChange={this.onChangeInputPreco}
-            ></InputsIndividuais>
+            <InputGroup>
+            <FormControl variant="floating" id="first-name">
+              <InputLeftElement
+                pointerEvents="none"
+                color="gray.500"
+                fontSize="0.9em"
+                children="R$"
+                paddingBottom='2'
+               />
+              <Input
+                type={"number"}
+                size="sm"
+                isInvalid
+                errorBorderColor="teal.500"
+                border={2}
+                borderRadius="4"
+                paddingLeft="9"
+                placeholder=" "
+                value={this.state.inputPreco}
+                onChange={this.onChangeInputPreco}
+              ></Input>
+<FormLabel color="gray.500" marginLeft="9">Valor</FormLabel>
 
-            <SelectIndividual
+            </FormControl>
+            </InputGroup>
+
+            <Select
               name="pagamento"
+              size="sm"
+              marginTop="1"
+              isInvalid
+              errorBorderColor="teal.500"
+              border={1}
+              borderRadius="4"
+              height={6}
               onChange={this.onChangeInputPagamento}
             >
               <option value="" selected>
@@ -257,29 +332,43 @@ export default class Cadastro extends Component {
               <option value="Pix">Pix</option>
               <option value="Paypal">PayPal</option>
               <option value="Boleto">Boleto</option>
-            </SelectIndividual>
+            </Select>
 
             <ContainerRenderizarPagamento>
               {renderizarPagamento}
             </ContainerRenderizarPagamento>
 
-            <InputsIndividuais
+            <Input
               type={"date"}
+              size="sm"
+              isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              borderRadius="4"
               value={this.state.inputPrazo}
               onChange={this.onChangeInputPrazo}
-            ></InputsIndividuais>
+            ></Input>
 
-            <BotaoCadastrar onClick={this.cadastraProfiss}>
-              Cadastre
-            </BotaoCadastrar>
+            <Button
+              rightIcon={<Icon as={BiCheck} w={5} h={5} />}
+              colorScheme="teal"
+              variant="solid"
+              width={220}
+              h={8}
+              fontWeight="bold"
+              fontSize="15"
+              onClick={this.cadastraProfiss}
+              marginTop="3"
+              letterSpacing={1}
+            >
+              CADASTRAR
+            </Button>
+          </Stack>
           </Inputs>
         </Main>
 
         <Footer>
-          <TextoFooter>
-            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Lobo e
-            Sávio Ayres.
-          </TextoFooter>
+          <TextoFooter></TextoFooter>
         </Footer>
       </DivContainer>
     );
