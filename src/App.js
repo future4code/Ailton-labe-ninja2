@@ -6,7 +6,7 @@ import Cadastro from "./Components/Cadastro/Cadastro.js";
 import Contrato from "./Components/Contrato/Contrato.js";
 import PaginaDetalhes from "./Components/PaginaDetalhes/PaginaDetalhes.js";
 import Carrinho from "./Components/Carrinho/Carrinho.js";
-// import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
 
@@ -15,7 +15,6 @@ export default class App extends Component {
     tela: "home",
     servicos: [],
     servicosDetalhes: [],
-    // carrinho: [],
     AdicionarCarrinhoPaginaDetalhes: "",
   }
 
@@ -42,6 +41,7 @@ export default class App extends Component {
       case "detalhe":
         return (
           <PaginaDetalhes
+            updateJobTaken={this.updateJobTaken}
             AdicionarCarrinhoPaginaDetalhes={
               this.state.AdicionarCarrinhoPaginaDetalhes
             }
@@ -108,11 +108,11 @@ export default class App extends Component {
       });
   };
 
-  updateJobTaken = (id) => {
+  updateJobTaken = (nome) => {
     const body = {
       taken: true,
     };
-    const url = `https://labeninjas.herokuapp.com/jobs/${id}`;
+    const url = `https://labeninjas.herokuapp.com/jobs/${nome.id}`;
     axios
       .post(url, body, {
         headers: {
@@ -121,6 +121,7 @@ export default class App extends Component {
       })
       .then((response) => {
         alert("Serviço adicionado ao carrinho");
+        this.getJobId(nome)
       })
       .catch((error) => {
         alert("Erro, tente novamente!");
@@ -208,34 +209,10 @@ export default class App extends Component {
     });
   };
 
-  onClickContratar = () =>{
-    
-    alert(`Serviços contratados`)
-    
-    let guardaTaken = this.state.servicos
-    console.log(guardaTaken)
-    this.setState({servicos: []})
-    // for(let taken of this.state.servicos){
-
-    //   return taken
-
-    // }
-
-    return guardaTaken.map((take) =>{
-
-      take.taken = true
-      // this.setState({servicos: guardaTaken})
-    })
-    
-   
-
-  }
-
   render() {
-    // return <ChakraProvider>
-    //   {this.trocaTela()}</ChakraProvider>;
-    return(<div>
+    return <ChakraProvider>
       {this.trocaTela()}
-    </div>)
+      </ChakraProvider>;
+
   }
 }
