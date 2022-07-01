@@ -107,6 +107,8 @@ const TituloCard = styled.h3`
 `
 const DivRenderizadaBotao = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 5px;
   justify-content: space-between;
   align-items: center;
   margin-left: 5px;
@@ -204,9 +206,12 @@ export default class Contrato extends Component {
                 Detalhes
               </Button>
               {nome.taken ? (
-                <Button size="sm">Adicionado</Button>
+                <Button marginleft="2" size="sm">
+                  Adicionado
+                </Button>
               ) : (
                 <Button
+                  colorScheme="teal"
                   size="xs"
                   onClick={() => this.props.updateJobTaken(nome)}
                 >
