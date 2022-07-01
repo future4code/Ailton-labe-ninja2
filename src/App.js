@@ -15,9 +15,10 @@ export default class App extends Component {
     tela: "home",
     servicos: [],
     servicosDetalhes: [],
-    // carrinho: [],
     AdicionarCarrinhoPaginaDetalhes: "",
-  };
+  }
+
+ 
 
   trocaTela = () => {
     switch (this.state.tela) {
@@ -40,6 +41,7 @@ export default class App extends Component {
       case "detalhe":
         return (
           <PaginaDetalhes
+            updateJobTaken={this.updateJobTaken}
             AdicionarCarrinhoPaginaDetalhes={
               this.state.AdicionarCarrinhoPaginaDetalhes
             }
@@ -57,6 +59,7 @@ export default class App extends Component {
             updateJobNotTaken={this.updateJobNotTaken}
             servicos={this.state.servicos}
             atualizaValor={this.atualizaValor}
+            onClickContratar={this.onClickContratar}
           />
         );
       default:
@@ -105,11 +108,11 @@ export default class App extends Component {
       });
   };
 
-  updateJobTaken = (id) => {
+  updateJobTaken = (nome) => {
     const body = {
       taken: true,
     };
-    const url = `https://labeninjas.herokuapp.com/jobs/${id}`;
+    const url = `https://labeninjas.herokuapp.com/jobs/${nome.id}`;
     axios
       .post(url, body, {
         headers: {
@@ -118,6 +121,7 @@ export default class App extends Component {
       })
       .then((response) => {
         alert("Serviço adicionado ao carrinho");
+        this.getJobId(nome)
       })
       .catch((error) => {
         alert("Erro, tente novamente!");
@@ -184,7 +188,20 @@ export default class App extends Component {
     if (id === "contrato") {
       this.setState({ servicosDetalhes: [] });
     }
-  };
+
+  }
+
+  guardarCarrinho = (nome) => {
+    const carrinhoAntigo = this.state.carrinho
+    const carrinhoNovo = [...carrinhoAntigo, nome]
+    this.setState({ carrinho: carrinhoNovo })
+
+
+
+    alert('Funcionou')
+  }
+
+
 
   trocaTelaCarrinho = () => {
     this.setState({
@@ -193,6 +210,9 @@ export default class App extends Component {
   };
 
   render() {
-    return <ChakraProvider>{this.trocaTela()}</ChakraProvider>;
+    return <ChakraProvider>
+      {this.trocaTela()}
+      </ChakraProvider>;
+
   }
 }

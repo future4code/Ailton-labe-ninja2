@@ -195,7 +195,7 @@ export default class Contrato extends Component {
               {nome.taken ? (
                 <BotaoCard>Adicionado</BotaoCard>
               ) : (
-                <BotaoCard onClick={() => this.props.updateJobTaken(nome.id)}>
+                <BotaoCard onClick={() => this.props.updateJobTaken(nome)}>
                   Adicionar ao Carrinho
                 </BotaoCard>
               )}

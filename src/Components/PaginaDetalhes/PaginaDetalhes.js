@@ -69,6 +69,8 @@ const BoxPag = styled.div`
 
 export default class PaginaDetalhes extends React.Component {
   render() {
+
+
     const payList = this.props.servicosDetalhes.paymentMethods?.map((list) => {
       return <div key={list}> {list} </div>;
     });
@@ -111,7 +113,19 @@ export default class PaginaDetalhes extends React.Component {
                 por <strong>R$ {this.props.servicosDetalhes.price},00</strong>
               </p>
               <p>{this.props.servicosDetalhes.description}</p>
-              <Button onClick={() => this.props.guardarCarrinho(this.props.AdicionarCarrinhoPaginaDetalhes)}> Adicionar ao carrinho</Button>
+
+
+              {/* <Button onClick={() => this.props.updateJobTaken(this.props.AdicionarCarrinhoPaginaDetalhes.id)}> Adicionar ao carrinho</Button> */}
+
+              {this.props.servicosDetalhes.taken ? (
+                <button>Adicionado</button>
+              ) : (
+                <button onClick={() => this.props.updateJobTaken(this.props.AdicionarCarrinhoPaginaDetalhes)}>
+                  Adicionar ao Carrinho
+                </button>
+              )}  
+
+
               <Button onClick={() => this.props.atualizaValor("contrato")}>
                 Voltar
               </Button>

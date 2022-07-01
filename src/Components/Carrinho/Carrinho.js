@@ -105,6 +105,7 @@ export default class Carrinho extends Component {
         );
       });
 
+   
     return (
       <div>
         <Header>
@@ -123,6 +124,6 @@ export default class Carrinho extends Component {
         </Main>
         <Footer>Footer</Footer>
       </div>
-    );
+    )
   }
 }
