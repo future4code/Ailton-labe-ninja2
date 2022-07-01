@@ -6,7 +6,7 @@ import Cadastro from "./Components/Cadastro/Cadastro.js";
 import Contrato from "./Components/Contrato/Contrato.js";
 import PaginaDetalhes from "./Components/PaginaDetalhes/PaginaDetalhes.js";
 import Carrinho from "./Components/Carrinho/Carrinho.js";
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from "@chakra-ui/react";
 
 const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
 
@@ -16,9 +16,7 @@ export default class App extends Component {
     servicos: [],
     servicosDetalhes: [],
     AdicionarCarrinhoPaginaDetalhes: "",
-  }
-
- 
+  };
 
   trocaTela = () => {
     switch (this.state.tela) {
@@ -121,7 +119,9 @@ export default class App extends Component {
       })
       .then((response) => {
         alert("Serviço adicionado ao carrinho");
-        this.getJobId(nome)
+        if (this.state.tela === "detalhe") {
+          this.getJobId(nome);
+        }
       })
       .catch((error) => {
         alert("Erro, tente novamente!");
@@ -188,20 +188,15 @@ export default class App extends Component {
     if (id === "contrato") {
       this.setState({ servicosDetalhes: [] });
     }
-
-  }
+  };
 
   guardarCarrinho = (nome) => {
-    const carrinhoAntigo = this.state.carrinho
-    const carrinhoNovo = [...carrinhoAntigo, nome]
-    this.setState({ carrinho: carrinhoNovo })
+    const carrinhoAntigo = this.state.carrinho;
+    const carrinhoNovo = [...carrinhoAntigo, nome];
+    this.setState({ carrinho: carrinhoNovo });
 
-
-
-    alert('Funcionou')
-  }
-
-
+    alert("Funcionou");
+  };
 
   trocaTelaCarrinho = () => {
     this.setState({
@@ -210,9 +205,6 @@ export default class App extends Component {
   };
 
   render() {
-    return <ChakraProvider>
-      {this.trocaTela()}
-      </ChakraProvider>;
-
+    return <ChakraProvider>{this.trocaTela()}</ChakraProvider>;
   }
 }

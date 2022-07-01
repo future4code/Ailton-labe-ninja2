@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import { Button, ButtonGroup, Stack, Icon } from "@chakra-ui/react";
+import { GiRunningNinja } from "react-icons/gi";
+import { GiNinjaMask } from "react-icons/gi";
+import { FaUserNinja } from "react-icons/fa";
+import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
+import iconeNinja from "../../assets/iconeNinja.png";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 const DivContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  * {
+  image.png * {
     margin: 0;
     padding: 0;
   }
@@ -22,8 +28,8 @@ const DivContainer = styled.div`
 const BotaoHome = styled.button`
   border: 1px solid #bf9000;
   margin-left: 5px;
-  width: 70px;
-  height: 20px;
+  width: 250px;
+  height: 80px;
   border-radius: 6px;
 `;
 
@@ -36,15 +42,20 @@ const BotaoCentralizado = styled.div`
 
 const Header = styled.div`
   width: 100vw;
-  height: 10vh;
-  background-color: #ffd966;
+  height: 13vh;
+  background-color: #38b2ac;
+  letter-spacing: 3px;
 `;
 const TituloHome = styled.header`
-  font-size: 330%;
+  font-size: 85px;
   font-family: "Bebas Neue";
+  color: white;
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 `;
 
 const ImagemTitulo = styled.img`
@@ -56,9 +67,11 @@ const Main = styled.div`
   justify-content: center;
   width: 100vw;
   height: 80vh;
-  background-color: #ffe599;
+  background-color: #e6fffa;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  padding: 35px 0;
   align-items: center;
   font-family: "Bebas Neue";
 `;
@@ -71,8 +84,8 @@ const TextoTitulo = styled.p`
   font-style: italic;
 `;
 const Footer = styled.div`
-  height: 10vh;
-  background-color: #ffd966;
+  height: 7vh;
+  background-color: #38b2ac;
   display: flex;
   align-items: flex-end;
   justify-content: end;
@@ -85,36 +98,40 @@ export default class Home extends Component {
     return (
       <DivContainer>
         <GlobalStyle></GlobalStyle>
-
         <Header>
           <TituloHome> LABENINJAS </TituloHome>
         </Header>
         <Main>
-          <main>
-            <ImagemTitulo
-              src="https://cdn-icons-png.flaticon.com/512/94/94390.png?w=360"
-              alt="logo"
-              height="160px"
-              width="160px"
-            />
-            <TextoTitulo>O talento certo no momento certo!</TextoTitulo>
-            <BotaoCentralizado>
-              <BotaoHome onClick={() => this.props.atualizaValor("cadastro")}>
-                Cadastro
-              </BotaoHome>
-              <BotaoHome onClick={() => this.props.atualizaValor("contrato")}>
-                Listagem
-              </BotaoHome>
-            </BotaoCentralizado>
-          </main>
+          <ImagemTitulo src={iconeNinja} />
+          <TextoTitulo>O talento certo no momento certo!</TextoTitulo>
+          <Stack direction="row" spacing={4}>
+            <Button
+              leftIcon={<Icon as={FaUserNinja} />}
+              colorScheme="teal"
+              variant="solid"
+              width={220}
+              h={16}
+              fontWeight='thin'
+              fontSize="25"
+              onClick={() => this.props.atualizaValor("cadastro")}
+            >
+              Quero ser um ninja
+            </Button>
+            <Button
+              leftIcon={<Icon as={GiRunningNinja} w={8} h={8}/>}
+              colorScheme="teal"
+              variant="solid"
+              width={220}
+              h={16}
+              fontWeight='thin'
+              fontSize="25"
+              onClick={() => this.props.atualizaValor("contrato")}
+            >
+              Contratar um ninja
+            </Button>
+          </Stack>
         </Main>
-
-        <Footer>
-          <p>
-            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Lobo e
-            Sávio Ayres.
-          </p>
-        </Footer>
+        <Footer></Footer>
       </DivContainer>
     );
   }
