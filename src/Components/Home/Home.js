@@ -6,7 +6,7 @@ import { GiRunningNinja } from "react-icons/gi";
 import { GiNinjaMask } from "react-icons/gi";
 import { FaUserNinja } from "react-icons/fa";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
-import iconeNinja from "../../img/iconeNinja.png";
+import iconeNinja from "../../assets/iconeNinja.png";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -111,17 +111,19 @@ export default class Home extends Component {
               variant="solid"
               width={220}
               h={16}
+              fontWeight='thin'
               fontSize="25"
               onClick={() => this.props.atualizaValor("cadastro")}
             >
               Quero ser um ninja
             </Button>
             <Button
-              leftIcon={<Icon as={GiRunningNinja} />}
+              leftIcon={<Icon as={GiRunningNinja} w={8} h={8}/>}
               colorScheme="teal"
               variant="solid"
               width={220}
               h={16}
+              fontWeight='thin'
               fontSize="25"
               onClick={() => this.props.atualizaValor("contrato")}
             >
