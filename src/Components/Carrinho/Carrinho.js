@@ -60,34 +60,50 @@ const BotaoCarrinho = styled.button`
 
 export default class Carrinho extends Component {
 
+  removerFinalizandoCompra = (array) => {
+    for (let job of array) {
+      this.props.updateMultipleJobNotTaken(job.id);
+    }
+    alert("Compra finalizada!");
+  };
+
   render() {
+    const arrayServicosCarrinho = this.props.servicos
+      .filter((job) => {
+        return job.taken;
+      })
+      .map((job) => {
+        return job;
+      });
 
     const somaPrecos = this.props.servicos
-    .filter((itens) => {
-      return itens.taken
-    })
+      .filter((itens) => {
+        return itens.taken;
+      })
       .map((job) => {
-        return job.price
+        return job.price;
       })
       .reduce((prev, curr) => prev + curr, 0);
 
     const itensCarrinho = this.props.servicos
-    .filter((itens) => {
-      return itens.taken
-    })
-    .map((itens) => {
-      return (
-        <ContainerGeral>
-          <CardContainer>
-            <h2>{itens.title}</h2>
-            <p>R$: {itens.price},00</p>
-            <BotaoCarrinho onClick={() => this.props.updateJobNotTaken(itens.id)}>
-              Remover
-            </BotaoCarrinho>
-          </CardContainer>
-        </ContainerGeral>
-      );
-    });
+      .filter((itens) => {
+        return itens.taken;
+      })
+      .map((itens) => {
+        return (
+          <ContainerGeral>
+            <CardContainer>
+              <h2>{itens.title}</h2>
+              <p>R$: {itens.price},00</p>
+              <BotaoCarrinho
+                onClick={() => this.props.updateJobNotTaken(itens.id)}
+              >
+                Remover
+              </BotaoCarrinho>
+            </CardContainer>
+          </ContainerGeral>
+        );
+      });
 
     return (
       <div>
@@ -96,13 +112,14 @@ export default class Carrinho extends Component {
         </Header>
         <GlobalStyle></GlobalStyle>
         <Main>
-          {itensCarrinho.length === 0 ?
-          <p>Carrinho vazio</p>
-           :
-          <div>{itensCarrinho}
-          A soma dos produtos é: R$ {somaPrecos},00
-          </div>
-          }
+          {itensCarrinho.length === 0 ? (
+            <p>Carrinho vazio</p>
+          ) : (
+            <div>
+              <p>{itensCarrinho}A soma dos produtos é: R$ {somaPrecos},00</p>
+              <button onClick={() => this.removerFinalizandoCompra(arrayServicosCarrinho)}>Finalizar compra</button>
+            </div>
+          )}
         </Main>
         <Footer>Footer</Footer>
       </div>
