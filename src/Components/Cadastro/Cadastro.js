@@ -122,7 +122,7 @@ const TextoFooter = styled.p`
 
 const ContainerFormasPagamento = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 130px;
   align-items: center;
 `;
@@ -131,7 +131,6 @@ const ContainerRenderizarPagamento = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3px;
 `;
 
 const ButtonFormasPagamento = styled.button`
@@ -308,7 +307,7 @@ export default class Cadastro extends Component {
                 value={this.state.inputPreco}
                 onChange={this.onChangeInputPreco}
               ></Input>
-<FormLabel color="gray.500" marginLeft="9">Valor</FormLabel>
+<FormLabel color="gray.500">Valor</FormLabel>
 
             </FormControl>
             </InputGroup>
@@ -316,7 +315,6 @@ export default class Cadastro extends Component {
             <Select
               name="pagamento"
               size="sm"
-              marginTop="1"
               isInvalid
               errorBorderColor="teal.500"
               border={1}
@@ -325,7 +323,7 @@ export default class Cadastro extends Component {
               onChange={this.onChangeInputPagamento}
             >
               <option value="" selected>
-                Selecione
+                Formas de Pagamento
               </option>
               <option value="Cartão de Crédito">Cartão Crédito</option>
               <option value="Cartão de Débito">Cartão Débito</option>
@@ -333,6 +331,7 @@ export default class Cadastro extends Component {
               <option value="Paypal">PayPal</option>
               <option value="Boleto">Boleto</option>
             </Select>
+              </Stack>
 
             <ContainerRenderizarPagamento>
               {renderizarPagamento}
@@ -347,6 +346,7 @@ export default class Cadastro extends Component {
               borderRadius="4"
               value={this.state.inputPrazo}
               onChange={this.onChangeInputPrazo}
+              marginTop='4'
             ></Input>
 
             <Button
@@ -363,7 +363,6 @@ export default class Cadastro extends Component {
             >
               CADASTRAR
             </Button>
-          </Stack>
           </Inputs>
         </Main>
 

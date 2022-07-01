@@ -5,6 +5,8 @@ import { Button, ButtonGroup, Stack, Icon, HStack, VStack} from "@chakra-ui/reac
 import { FaTrash } from "react-icons/fa";
 import { SiVerizon } from "react-icons/si";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BiCheck } from "react-icons/bi";
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -110,7 +112,8 @@ const DivCarVazio = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column-reverse;
+  gap: 15px;
 `
 const TextVazio = styled.p`
 
@@ -165,8 +168,8 @@ export default class Carrinho extends Component {
               leftIcon={<Icon as={FaTrash} />}
               colorScheme="teal"
               variant="solid"
-              width={130}
-              h={10}
+              width={105}
+              h={8}
               fontWeight='thin'
               fontSize="16"
               onClick={() => this.props.updateJobNotTaken(itens.id)}
@@ -189,10 +192,11 @@ export default class Carrinho extends Component {
         <Main>
           {itensCarrinho.length === 0 ? (
             <DivContainer2>
-            <DivCarVazio><TextVazio>Carrinho Vazio</TextVazio>
+              <DivCarVazio><TextVazio>Carrinho Vazio</TextVazio>
              <Icon as={AiOutlineShoppingCart}
-             width={100}
-             height={100}
+             width={230}
+             height={230}
+             marginRight='5'
              
              />
             </DivCarVazio>
@@ -206,11 +210,11 @@ export default class Carrinho extends Component {
             <DivSomatoria>
               <p>A soma dos produtos é: <PriceCard>R$ {somaPrecos},00</PriceCard></p>
               <Button
-              leftIcon={<Icon as={SiVerizon} />}
+              leftIcon={<Icon as={BiCheck} w={5} h={5} />}
               colorScheme="teal"
               variant="solid"
-              width={160}
-              h={10}
+              width={165}
+              h={6}
               fontWeight='thin'
               fontSize="16"
               onClick={() => this.removerFinalizandoCompra(arrayServicosCarrinho)}

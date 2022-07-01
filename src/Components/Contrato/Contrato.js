@@ -27,15 +27,19 @@ const DivContainer = styled.div`
 `
 
 const Header = styled.div`
-  height: 10vh;
-  font-family: 'Bebas Neue';
+ width: 100%;
+  height: 13vh;
   background-color: #38b2ac;
-  font-size: 220%;
+  letter-spacing: 1px;
+  font-family: "Bebas Neue";
   display: flex;
+  padding-left: 15px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 25px;
+  font-size: 35px;
+  padding-right: 10px;
 `
+
 
 const InputsFiltros = styled.div`
   /* border: 1px solid black; */
@@ -78,6 +82,7 @@ const Footer = styled.div`
   justify-content: end;
   font-size: small;
   font-family: 'Tahoma';
+
 `
 
 const BotaoHome = styled.button`
@@ -93,10 +98,11 @@ const DivRenderizada = styled.div`
   align-items: center;
   border: 1px solid #38b2ac;
   box-shadow: #38b2ac 2px 2px 2px;
+  margin-bottom: 8px;
   border-radius: 5px;
   width: 250px;
   height: 30vh;
-  margin-top: 25px;
+  margin-top: 15px;
   font-family: 'Tahoma';
 `
 
@@ -188,8 +194,10 @@ export default class Contrato extends Component {
       .map((nome) => {
         return (
           <DivRenderizada key={nome.id}>
-            <TituloCard>
+            <TituloCard><b>
               {nome.title}
+
+            </b>
               {/* <button onClick={() => this.props.removeJob(nome.id)}>x</button> */}
             </TituloCard>
             <p>
@@ -227,13 +235,13 @@ export default class Contrato extends Component {
       <DivContainer>
         <GlobalStyle></GlobalStyle>
         <Header>
-          <p onClick={() => this.props.atualizaValor('home')}>Labeninjas</p>
+          <p onClick={() => this.props.atualizaValor('home')}>Contrato</p>
 
           <Icon
             as={BsFillCartFill}
             onClick={this.props.trocaTelaCarrinho}
-            w={10}
-            h={10}
+            w={8}
+            h={8}
           />
         </Header>
 
@@ -241,6 +249,10 @@ export default class Contrato extends Component {
           <Input
             size="sm"
             type={'text'}
+            isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              borderRadius="4"
             placeholder={'Valor Mínimo'}
             value={this.state.inputValorMinimo}
             onChange={this.onChangeInputValorMinimo}
@@ -248,6 +260,10 @@ export default class Contrato extends Component {
           <Input
             size="sm"
             type={'text'}
+            isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              borderRadius="4"
             placeholder={'Valor Máximo'}
             value={this.state.inputValorMaximo}
             onChange={this.onChangeInputValorMaximo}
@@ -255,14 +271,23 @@ export default class Contrato extends Component {
           <Input
             size="sm"
             type={'text'}
+            isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              borderRadius="4"
             placeholder={'Busca por Título ou Descrição'}
             value={this.state.inputBuscar}
             onChange={this.onChangeInputBuscar}
           ></Input>
           <Select
             size="sm"
+            isInvalid
+              errorBorderColor="teal.500"
+              border={2}
+              borderRadius="4"
             value={this.state.inputOrdenacao}
             onChange={this.onChangeInputOrdenacao}
+
           >
             <option>Sem Ordenação</option>
             <option value="menor-valor">Menor Valor</option>
@@ -274,10 +299,6 @@ export default class Contrato extends Component {
         <Main>{mapeia}</Main>
 
         <Footer>
-          <p>
-            Giovanna Magalhães, Igor de Castro, Lincoln Ribeiro, Raoni Bastos e
-            Sávio Ayres
-          </p>
         </Footer>
       </DivContainer>
     )
