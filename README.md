@@ -52,16 +52,16 @@ Quando renderizados os serviços aparecerá um botão para finalizar compra, ond
 ## Prints do Labe Ninjas:
 
 <p>Página inicial</p>
-<img src="https://user-images.githubusercontent.com/100432523/177004641-79b2c9a7-cfb1-4d5b-9b19-f4ea532ea2d8.png" alt="tela-inicial" width="350px" height="200px"/>
+<img src="https://user-images.githubusercontent.com/100432523/177011694-c24638cb-0590-4515-b133-2d6eb33a2ebb.png" alt="tela-inicial" width="350px" height="200px"/>
 
 <p>Página Cadastrar um serviço</p>
-<img src="https://user-images.githubusercontent.com/100432523/177004636-92096513-a8a9-43f5-a6d3-c85959e01ed8.png" alt="tela-cadastrar" width="350px" height="200px"/>
+<img src="https://user-images.githubusercontent.com/100432523/177011688-8a898185-5588-471e-934e-4418bf8350e5.png" alt="tela-cadastrar" width="350px" height="200px"/>
 
 <p>Página Contratar um ninja</p>
-<img src="https://user-images.githubusercontent.com/100432523/177004639-f12490c0-e4a5-47c4-b0cc-78da17e9a5c3.png" alt="tela-contratar" width="350px" height="200px"/>
+<img src="https://user-images.githubusercontent.com/100432523/177011691-a9aecf22-5b67-4d07-9abc-55e6135167ee.png" alt="tela-contratar" width="350px" height="200px"/>
 
 <p>Página Detalhes do serviço</p>
-<img src="https://user-images.githubusercontent.com/100432523/177004640-2e2306fe-1fc9-40cc-be4e-f0b9211962dd.png" alt="tela-detalhes" width="350px" height="200px"/>
+<img src="https://user-images.githubusercontent.com/100432523/177011692-404b483c-0718-47a9-a12e-3cf3b4ddf03a.png" alt="tela-detalhes" width="350px" height="200px"/>
 
 <p>Página Carrinho</p>
-<img src="https://user-images.githubusercontent.com/100432523/177004638-d5c68932-108c-49a6-a7e1-84bb1ebc14f7.png" alt="tela-carrinho" width="350px" height="200px"/>
+<img src="https://user-images.githubusercontent.com/100432523/177011690-9109d89c-267a-4cf9-a366-1550e075aec8.png" alt="tela-carrinho" width="350px" height="200px"/>
