@@ -1,6 +1,6 @@
 # Projeto Labe Ninjas
 
-link do surge: https://inconclusive-authority.surge.sh
+link do surge: https://labeninja-2.surge.sh/
 
 **Trabalharam neste projeto:** Lincoln Ribeiro, Igor Castro, Giovanna Magalhães, Sávio Ayres e Raoni Lobo.
 
