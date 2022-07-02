@@ -13,7 +13,9 @@ link do surge: https://inconclusive-authority.surge.sh
 
 O projeto foi feito utilizando React, estilizado com styled-components e Chakra ui (framework). Trabalhamos com requisições de uma API para cadastrar, visualizar, remover e editar todos os serviços renderizados no site (documentação da API: https://documenter.getpostman.com/view/9133542/TzXukJkY)
 Por ter sido um projeto feito em grupo, utilizamos o github para realizar o gerenciamento dos arquivos do projeto.
- 
+
+O projeto também foi feito pensando na responsividade, por isto o site é **responsivo** para dispositivos móveis (menores que 480px de largura). 
+
 ## Funcionalidades/não funcionalidades do projeto
 
 ### Página inicial (home)
