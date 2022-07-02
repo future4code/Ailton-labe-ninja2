@@ -38,6 +38,7 @@ const Header = styled.div`
   justify-content: space-between;
   font-size: 35px;
   padding-right: 20px;
+  border-bottom: 1px dotted black;
 `;
 
 const InputsFiltros = styled.div`
@@ -66,6 +67,7 @@ const Footer = styled.div`
   justify-content: end;
   font-size: small;
   font-family: "Tahoma";
+  border-top: 1px dotted black;
 `;
 
 const DivRenderizada = styled.div`
@@ -80,6 +82,16 @@ const DivRenderizada = styled.div`
   height: 30vh;
   margin-top: 15px;
   font-family: "Tahoma";
+
+  @media screen and (max-width: 480px) {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
 `;
 
 const TituloCard = styled.h3`
@@ -96,6 +108,11 @@ const DivRenderizadaBotao = styled.div`
   margin-left: 5px;
   font-family: "Tahoma";
   padding-top: 15px;
+
+
+  @media screen and (max-width:480px){
+    margin-bottom: 4px;
+  }
 `;
 
 const DivCursorPointer = styled.div`
