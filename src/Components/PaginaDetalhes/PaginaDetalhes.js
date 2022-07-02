@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { Button, ButtonGroup, Stack, Icon } from "@chakra-ui/react";
 import { GiRunningNinja } from "react-icons/gi";
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+import { TbArrowBackUp } from "react-icons/tb";
+import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -65,8 +66,7 @@ const Footer = styled.div`
   font-family: "Tahoma";
 `;
 
-const Box = styled.div`
-`
+const Box = styled.div``;
 
 const BoxPag = styled.div`
   overflow: hidden;
@@ -99,82 +99,75 @@ export default class PaginaDetalhes extends React.Component {
     return (
       <div>
         <GlobalStyle></GlobalStyle>
-        <Header>
-          Detalhes
-        </Header>
+        <Header>Detalhes</Header>
         <Container>
           {this.props.servicosDetalhes.title &&
           this.props.servicosDetalhes.paymentMethods ? (
             <Container2>
-            
               <h1>
                 <strong>{this.props.servicosDetalhes.title}</strong>
               </h1>
               <p>{this.props.servicosDetalhes.description}</p>
-              <hr/>
+              <hr />
               <strong>Aceita:</strong>
               <BoxPag>
-                
                 <Box>{payList}</Box>
               </BoxPag>
-              <hr/>
+              <hr />
               <p>
                 {this.props.servicosDetalhes.dueDate &&
                   formateData(this.props.servicosDetalhes.dueDate)}{" "}
                 por <strong>R$ {this.props.servicosDetalhes.price},00</strong>
               </p>
-
-             
-
-              {/* <Button onClick={() => this.props.updateJobTaken(this.props.AdicionarCarrinhoPaginaDetalhes.id)}> Adicionar ao carrinho</Button> */}
-
               {this.props.servicosDetalhes.taken ? (
                 <Button
                   leftIcon={<Icon as={GiRunningNinja} w={8} h={8} />}
-                  colorScheme="teal"
                   variant="solid"
-                  width={220}
-                  h={16}
+                  width={180}
+                  h={9}
                   fontWeight="thin"
                   fontSize="18"
-                  >
+                  marginBottom="1"
+                  marginTop="2"
+                >
                   Adicionado
                 </Button>
               ) : (
                 <Button
-                onClick={() =>
-                  this.props.updateJobTaken(
-                    this.props.AdicionarCarrinhoPaginaDetalhes
+                  onClick={() =>
+                    this.props.updateJobTaken(
+                      this.props.AdicionarCarrinhoPaginaDetalhes
                     )
                   }
-                  leftIcon={<Icon as={GiRunningNinja} w={8} h={8} />}
+                  // leftIcon={<Icon as={GiRunningNinja} w={8} h={8} />}
                   colorScheme="teal"
                   variant="solid"
-                  width={210}
-                  h={10}
+                  width={180}
+                  h={9}
                   fontWeight="thin"
                   fontSize="16"
-                  marginBottom='1'
-                  marginTop= '2'
+                  marginBottom="1"
+                  marginTop="2"
                 >
                   Adicionar ao Carrinho
                 </Button>
               )}
               <Button
+                leftIcon={<Icon as={TbArrowBackUp} w={7} h={7} />}
                 onClick={() => this.props.atualizaValor("contrato")}
                 colorScheme="teal"
                 variant="solid"
-                width={100}
-                h={8}
+                width={180}
+                h={9}
+                paddingRight="12"
                 fontWeight="thin"
                 fontSize="16"
               >
                 Voltar
               </Button>
-              
             </Container2>
           ) : (
-            <CircularProgress isIndeterminate color='green.300' />
+            <CircularProgress isIndeterminate color="green.300" />
           )}
         </Container>
 

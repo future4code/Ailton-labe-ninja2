@@ -88,8 +88,10 @@ export default class Home extends Component {
           <TituloHome> LABENINJAS </TituloHome>
         </Header>
         <Main>
-          <ImagemTitulo src={iconeNinja}/>
-          <TextoTitulo><b>O talento certo no momento certo!</b></TextoTitulo>
+          <ImagemTitulo src={iconeNinja} />
+          <TextoTitulo>
+            <b>O talento certo no momento certo!</b>
+          </TextoTitulo>
           <Stack direction="row" spacing={4}>
             <Button
               leftIcon={<Icon as={FaUserNinja} />}
@@ -97,19 +99,19 @@ export default class Home extends Component {
               variant="solid"
               width={220}
               h={12}
-              fontWeight='thin'
+              fontWeight="thin"
               fontSize="25"
               onClick={() => this.props.atualizaValor("cadastro")}
             >
               Quero ser um ninja
             </Button>
             <Button
-              leftIcon={<Icon as={GiRunningNinja} w={8} h={8}/>}
+              leftIcon={<Icon as={GiRunningNinja} w={8} h={8} />}
               colorScheme="teal"
               variant="solid"
               width={220}
               h={12}
-              fontWeight='thin'
+              fontWeight="thin"
               fontSize="25"
               onClick={() => this.props.atualizaValor("contrato")}
             >

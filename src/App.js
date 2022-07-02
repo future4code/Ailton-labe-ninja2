@@ -14,11 +14,12 @@ import {
   FormLabel,
   Input,
   extendTheme,
-  Box
+  Box,
 } from "@chakra-ui/react";
 
 const activeLabelStyles = {
-  transform: "scale(0.85) translateY(-24px)"};
+  transform: "scale(0.85) translateY(-24px)",
+};
 
 export const theme = extendTheme({
   components: {
@@ -28,12 +29,13 @@ export const theme = extendTheme({
           container: {
             _focusWithin: {
               label: {
-                ...activeLabelStyles
-              }
+                ...activeLabelStyles,
+              },
             },
-            "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label": {
-              ...activeLabelStyles
-            },
+            "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label":
+              {
+                ...activeLabelStyles,
+              },
             label: {
               top: 0,
               left: 0,
@@ -46,13 +48,13 @@ export const theme = extendTheme({
               mx: 3,
               px: 1,
               my: 2,
-              transformOrigin: "left top"
-            }
-          }
-        }
-      }
-    }
-  }
+              transformOrigin: "left top",
+            },
+          },
+        },
+      },
+    },
+  },
 });
 
 const Authorization = "ce5895af-8d7c-488c-9062-f353648c87b8";
@@ -186,9 +188,7 @@ export default class App extends Component {
           Authorization: "ce5895af-8d7c-488c-9062-f353648c87b8",
         },
       })
-      .then((response) => {
-        // alert("Serviço retirado do carrinho");
-      })
+      .then((response) => {})
       .catch((error) => {
         alert("Tente novamente mais tarde.");
       });
@@ -235,20 +235,6 @@ export default class App extends Component {
     if (id === "contrato") {
       this.setState({ servicosDetalhes: [] });
     }
-  };
-
-  guardarCarrinho = (nome) => {
-    const carrinhoAntigo = this.state.carrinho;
-    const carrinhoNovo = [...carrinhoAntigo, nome];
-    this.setState({ carrinho: carrinhoNovo });
-
-    alert("Funcionou");
-  };
-
-  trocaTelaCarrinho = () => {
-    this.setState({
-      tela: "carrinho",
-    });
   };
 
   render() {
