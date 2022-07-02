@@ -45,6 +45,16 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 35px;
+  border-bottom: 1px dotted black;
+
+ @media screen and (max-width: 480px) {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 45px;
+ }
+
 `;
 
 const Main = styled.div`
@@ -55,6 +65,11 @@ const Main = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 480px) {
+     font-size: 14px;
+
+ }
 `;
 const Titulo = styled.div`
   font-family: "Bebas Neue";
@@ -77,6 +92,8 @@ const Footer = styled.div`
   justify-content: end;
   font-size: small;
   font-family: "Tahoma";
+  border-top: 1px dotted black;
+
 `;
 
 const TextoFooter = styled.p`
@@ -189,9 +206,16 @@ export default class Cadastro extends Component {
     let renderizarPagamento = [];
 
     if (this.state.inputPagamento.length > 0) {
-      renderizarPagamento = this.state.inputPagamento.map((forma, index) => {
+      renderizarPagamento = this.state.inputPagamento
+
+      .filter((forma,index) =>{
+        return forma != 'none'
+      })
+      
+      
+      .map((forma, index) => {
         return (
-          <ContainerFormasPagamento>
+          <ContainerFormasPagamento key={index}>
             <p>{forma}</p>
             <ButtonFormasPagamento
               onClick={() => this.removerFormaPagamento(index)}
@@ -282,7 +306,7 @@ export default class Cadastro extends Component {
                 height={6}
                 onChange={this.onChangeInputPagamento}
               >
-                <option value="" selected>
+                <option  value={"none"}>
                   Formas de Pagamento
                 </option>
                 <option value="Cartão de Crédito">Cartão Crédito</option>

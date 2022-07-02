@@ -30,6 +30,7 @@ const Header = styled.div`
   height: 13vh;
   background-color: #38b2ac;
   letter-spacing: 3px;
+  border-bottom: 1px dotted black;
 `;
 const TituloHome = styled.header`
   font-size: 75px;
@@ -42,6 +43,12 @@ const TituloHome = styled.header`
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
   text-shadow: black 0.1em 0.1em 0.2em;
+
+  @media screen and (max-width: 480px) {
+
+    font-size: 60px;
+
+}
 `;
 
 const ImagemTitulo = styled.img`
@@ -77,7 +84,24 @@ const Footer = styled.div`
   justify-content: end;
   font-size: small;
   font-family: "Tahoma";
+  border-top: 1px dotted black;
+
 `;
+
+const MediaScreenHome = styled.div`
+
+display: flex;
+gap: 12px;
+
+@media screen and (max-width: 480px) {
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+`
 
 export default class Home extends Component {
   render() {
@@ -92,7 +116,9 @@ export default class Home extends Component {
           <TextoTitulo>
             <b>O talento certo no momento certo!</b>
           </TextoTitulo>
-          <Stack direction="row" spacing={4}>
+
+          <MediaScreenHome>
+
             <Button
               leftIcon={<Icon as={FaUserNinja} />}
               colorScheme="teal"
@@ -117,7 +143,9 @@ export default class Home extends Component {
             >
               Contratar um ninja
             </Button>
-          </Stack>
+
+          </MediaScreenHome>
+
         </Main>
         <Footer></Footer>
       </DivContainer>

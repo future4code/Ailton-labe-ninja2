@@ -34,7 +34,17 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 35px;
-  padding-right: 10px;
+  padding-right: 20px;
+  border-bottom: 1px dotted black;
+
+
+  @media screen and (max-width: 480px) {
+    display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 45px;
+}
 `;
 
 const Main = styled.div`
@@ -48,14 +58,15 @@ const Main = styled.div`
 `;
 
 const Footer = styled.div`
-  width: 100vw;
-  height: 7vh;
+  height: 10vh;
   background-color: #38b2ac;
   display: flex;
   align-items: flex-end;
   justify-content: end;
-`;
-
+  font-size: small;
+  font-family: "Tahoma";
+  border-top: 1px dotted black;`
+;
 const DivCard = styled.div`
   overflow: hidden;
   padding: 0 0 15px;
@@ -80,7 +91,6 @@ const TitleCard = styled.h2`
   margin-top: 6px;
 `;
 const PriceCard = styled.p`
-  font-weight: bold;
   margin-top: 2px;
   display: inline;
 `;
@@ -126,6 +136,24 @@ const ContainerCarrinhos = styled.div`
   height: 100%;
 `
 
+const DivTamanhoCarrinho = styled.div`
+
+  @media screen and (max-width: 480px){
+    display: none;
+  }
+`
+
+const DivTamanhoCarrinho2 = styled.div`
+
+@media screen and (min-width: 480px){
+    display: none;
+  }
+
+`
+
+
+
+
 export default class Carrinho extends Component {
   removerFinalizandoCompra = (array) => {
     for (let job of array) {
@@ -156,13 +184,14 @@ export default class Carrinho extends Component {
       .filter((itens) => {
         return itens.taken;
       })
-      .map((itens) => {
+      .map((itens, index) => {
         return (
-            <DivCard>
+            <DivCard key={index}>
               <TitleCard>{itens.title}</TitleCard>
-              <p>
-                <PriceCard>Preço:</PriceCard> R${itens.price},00
-              </p>
+                 <PriceCard><strong>Preço:</strong>{" "}R${itens.price},00</PriceCard> 
+
+               
+              
               <Button
                 leftIcon={<Icon as={FaTrash} />}
                 colorScheme="teal"
@@ -190,22 +219,38 @@ export default class Carrinho extends Component {
             <DivContainer2>
               <DivCarVazio>
                 <TextVazio>Carrinho Vazio</TextVazio>
+                <DivTamanhoCarrinho>
                 <Icon
                   as={AiOutlineShoppingCart}
                   width={230}
                   height={230}
                   marginRight="5"
                 />
+                </DivTamanhoCarrinho>
+                <DivTamanhoCarrinho2>
+                <Icon
+                  as={AiOutlineShoppingCart}
+                  width='150px'
+                  height='150px'
+                  marginRight="5"
+                />
+                </DivTamanhoCarrinho2>
+
               </DivCarVazio>
             </DivContainer2>
           ) : (
             <ContainerCarrinhos>
               {itensCarrinho}
               <DivSomatoria>
-                <p>
+                
+                  <PriceCard>
                   A soma dos produtos é:{" "}
-                  <PriceCard>R$ {somaPrecos},00</PriceCard>
-                </p>
+                    <strong>
+                      
+                      R$ {somaPrecos},00
+                      </strong>
+                    </PriceCard>
+            
                 <Button
                   leftIcon={<Icon as={BiCheck} w={5} h={5} />}
                   colorScheme="teal"

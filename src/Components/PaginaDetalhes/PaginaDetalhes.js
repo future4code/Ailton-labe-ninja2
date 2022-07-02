@@ -24,6 +24,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 35px;
+  border-bottom: 1px dotted black;
 `;
 
 const Container = styled.div`
@@ -64,6 +65,7 @@ const Footer = styled.div`
   justify-content: end;
   font-size: small;
   font-family: "Tahoma";
+  border-top: 1px dotted black;
 `;
 
 const Box = styled.div``;
