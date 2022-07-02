@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Projeto Labe Ninjas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+link do surge: __
 
-## Available Scripts
+**Trabalharam neste projeto:** Lincoln Ribeiro, Igor Castro, Giovanna Magalhães, Sávio Ayres e Raoni Lobo.
 
-In the project directory, you can run:
+**Proposta:** Criar uma plataforma de Marketplace: a LabeNinjas. A ideia é que a plataforma sirva a 2 tipos de clientes:
 
-### `npm start`
+1. **Prestador de serviço:** Aquele que quer criar um anúncio para oferecer seu serviço;
+2. **Contratante:** Aquele que contratará o que foi anunciado.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Sobre o projeto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+O projeto foi feito utilizando React, estilizado com styled-components e Chakra ui (framework). Trabalhamos com requisições de uma API para cadastrar, visualizar, remover e editar todos os serviços renderizados no site (documentação da API: https://documenter.getpostman.com/view/9133542/TzXukJkY)
+Por ter sido um projeto feito em grupo, utilizamos o github para realizar o gerenciamento dos arquivos do projeto.
+ 
+## Funcionalidades/não funcionalidades do projeto
 
-### `npm test`
+### Página inicial (home)
+#### Funciona:<br>
+Dois botões que redirecionam para as páginas seguintes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Página Cadastrar um serviço (ao clicar no botão "Quero ser um ninja")
 
-### `npm run build`
+#### Funciona:<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pequeno formulário com 5 inputs e um botão para finalizar o cadastro, que realiza uma requisição na API para criar um serviço. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Página para Contratar os serviços (ao clicar no botão "Contratar um ninja")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Funciona:<br>
 
-### `npm run eject`
+Cada serviço criado na pagina de Cadastro será renderizado nesta página, todos os botões e inputs são funcionais, sendo eles: Inputs para filtrar a renderização dos serviços, botões para adicionar ao carrinho e para mostrar os detalhes do serviço e um botão para ir a página do carrinho.
+Botão "adicionar ao carrinho" realiza uma requisição na API no qual muda a propriedade Taken do serviço de false para true, uma verificação é feita e quando é mudado para true e o botão é trocado por outro, impedindo o usuário de tentar adicionar ao carrinho outra vez, visto que já foi realizado.
+Botão "detalhes" também faz uma requisição na API retornando todos os detalhes do serviço.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Página detalhes do serviço (ao clicar no botão Detalhes)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Funciona:<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Dois botões funcionais, onde é possível adicionar ao carrinho ou voltar para a página anterior.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Página Carrinho
 
-## Learn More
+#### Funciona:<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Utilizamos a propriedade Taken do serviço para renderiza-los no carrinho, caso seja true, ele será renderizado juntamene com um botão para remover (muda a propriedade taken para false utilizando a requisição da API).
+Quando renderizados os serviços aparecerá um botão para finalizar compra, onde também aparece o valor total da compra até o momento. Caso remova um serviço, ele atualiza o preço total. Ao clicar no botão finalizar compra todos os serviços são removidos do carrinho (para cada serviço no carrinho é feito uma requisição na API para mudar sua propriedade para false através de um loop).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Prints do Labe Ninjas:
 
-### Code Splitting
+<p>Página inicial</p>
+<img src="https://user-images.githubusercontent.com/100432523/177004641-79b2c9a7-cfb1-4d5b-9b19-f4ea532ea2d8.png" alt="tela-inicial" width="350px" height="200px"/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<p>Página Cadastrar um serviço</p>
+<img src="https://user-images.githubusercontent.com/100432523/177004636-92096513-a8a9-43f5-a6d3-c85959e01ed8.png" alt="tela-cadastrar" width="350px" height="200px"/>
 
-### Analyzing the Bundle Size
+<p>Página Contratar um ninja</p>
+<img src="https://user-images.githubusercontent.com/100432523/177004639-f12490c0-e4a5-47c4-b0cc-78da17e9a5c3.png" alt="tela-contratar" width="350px" height="200px"/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<p>Página Detalhes do serviço</p>
+<img src="https://user-images.githubusercontent.com/100432523/177004640-2e2306fe-1fc9-40cc-be4e-f0b9211962dd.png" alt="tela-detalhes" width="350px" height="200px"/>
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p>Página Carrinho</p>
+<img src="https://user-images.githubusercontent.com/100432523/177004638-d5c68932-108c-49a6-a7e1-84bb1ebc14f7.png" alt="tela-carrinho" width="350px" height="200px"/>
