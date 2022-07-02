@@ -47,7 +47,7 @@ Dois botões funcionais, onde é possível adicionar ao carrinho ou voltar para 
 #### Funciona:<br>
 
 Utilizamos a propriedade Taken do serviço para renderiza-los no carrinho, caso seja true, ele será renderizado juntamene com um botão para remover (muda a propriedade taken para false utilizando a requisição da API).
-Quando renderizados os serviços aparecerá um botão para finalizar compra, onde também aparece o valor total da compra até o momento. Caso remova um serviço, ele atualiza o preço total. Ao clicar no botão finalizar compra todos os serviços são removidos do carrinho (para cada serviço no carrinho é feito uma requisição na API para mudar sua propriedade para false através de um loop).
+Quando renderizado os serviços aparecerá um botão para finalizar compra, onde também aparece o valor total da compra até o momento. Caso remova um serviço, ele atualiza o preço total. Ao clicar no botão finalizar compra todos os serviços são removidos do carrinho (para cada serviço no carrinho é feito uma requisição na API para mudar sua propriedade para false através de um loop).
 
 ## Prints do Labe Ninjas:
 
