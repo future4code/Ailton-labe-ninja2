@@ -13,7 +13,7 @@ import {
   FormHelperText,
   FormLabel,
   extendTheme,
-  Box
+  Box,
 } from "@chakra-ui/react";
 
 const GlobalStyle = createGlobalStyle`
@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     width: 100vw;
-  height: 100vh;
+    height: 100vh;
   }
 `;
 
@@ -52,7 +52,6 @@ const Main = styled.div`
   height: 80vh;
   background-color: #e6fffa;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -68,41 +67,6 @@ const Titulo = styled.div`
 const Inputs = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const InputsIndividuais = styled.input`
-  border: 1px solid #bf9000;
-  margin-top: 4px;
-  width: align;
-  height: 20px;
-  border-radius: 2px;
-`;
-const SelectIndividual = styled.select`
-  border: 1px solid #bf9000;
-  width: align;
-  height: 20px;
-  border-radius: 2px;
-`;
-const DivBotao = styled.div`
-  margin-right: 15px;
-  border: none;
-  background-color: #ffd966;
-  display: flex;
-  align-items: center;
-`;
-
-const BotaoHome = styled.button`
-  border: 1px solid #bf9000;
-  width: 70px;
-  height: 20px;
-  border-radius: 6px;
-`;
-const BotaoCadastrar = styled.button`
-  border: 1px solid #bf9000;
-  margin-top: 8px;
-  width: align;
-  height: 20px;
-  border-radius: 6px;
 `;
 
 const Footer = styled.div`
@@ -122,9 +86,9 @@ const TextoFooter = styled.p`
 
 const ContainerFormasPagamento = styled.div`
   display: flex;
-  /* justify-content: space-between; */
-  width: 130px;
+  width: 150px;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const ContainerRenderizarPagamento = styled.div`
@@ -150,9 +114,6 @@ const ButtonFormasPagamento = styled.button`
   }
 `;
 
-const activeLabelStyles = {
-  transform: "scale(0.85) translateY(-24px)"};
- 
 export default class Cadastro extends Component {
   state = {
     inputTitulo: "",
@@ -254,84 +215,83 @@ export default class Cadastro extends Component {
             <p>Cadastre um serviço</p>
           </Titulo>
           <Inputs>
-          <Stack spacing={4}>
-          <FormControl variant="floating" id="first-name">
-            <Input
-              type={"text"}
-              isInvalid
-              errorBorderColor="teal.500"
-              border={2}
-              placeholder=" "
-              size="sm"
-              borderRadius="4"
-              value={this.state.inputTitulo}
-              onChange={this.onChangeInputTitulo}
-            ></Input>
+            <Stack spacing={4}>
+              <FormControl variant="floating" id="first-name">
+                <Input
+                  type={"text"}
+                  isInvalid
+                  errorBorderColor="teal.500"
+                  border={2}
+                  placeholder=" "
+                  size="sm"
+                  borderRadius="4"
+                  value={this.state.inputTitulo}
+                  onChange={this.onChangeInputTitulo}
+                ></Input>
 
-              <FormLabel color="gray.500">Título</FormLabel>
-            </FormControl>
+                <FormLabel color="gray.500">Título</FormLabel>
+              </FormControl>
 
-            <FormControl variant="floating" id="first-name">
-            <Input
-              type={"text"}
-              isInvalid
-              errorBorderColor="teal.500"
-              border={2}
-              placeholder=" "
-              size="sm"
-              borderRadius="4"
-              value={this.state.inputDescricao}
-              onChange={this.onChangeInputDescricao}
-            ></Input>
-<FormLabel color="gray.500">Descrição</FormLabel>
-            </FormControl>
+              <FormControl variant="floating" id="first-name">
+                <Input
+                  type={"text"}
+                  isInvalid
+                  errorBorderColor="teal.500"
+                  border={2}
+                  placeholder=" "
+                  size="sm"
+                  borderRadius="4"
+                  value={this.state.inputDescricao}
+                  onChange={this.onChangeInputDescricao}
+                ></Input>
+                <FormLabel color="gray.500">Descrição</FormLabel>
+              </FormControl>
 
-            <InputGroup>
-            <FormControl variant="floating" id="first-name">
-              <InputLeftElement
-                pointerEvents="none"
-                color="gray.500"
-                fontSize="0.9em"
-                children="R$"
-                paddingBottom='2'
-               />
-              <Input
-                type={"number"}
+              <InputGroup>
+                <FormControl variant="floating" id="first-name">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="gray.500"
+                    fontSize="0.9em"
+                    children="R$"
+                    paddingBottom="2"
+                  />
+                  <Input
+                    type={"number"}
+                    size="sm"
+                    isInvalid
+                    errorBorderColor="teal.500"
+                    border={2}
+                    borderRadius="4"
+                    paddingLeft="9"
+                    placeholder=" "
+                    value={this.state.inputPreco}
+                    onChange={this.onChangeInputPreco}
+                  ></Input>
+                  <FormLabel color="gray.500">Valor</FormLabel>
+                </FormControl>
+              </InputGroup>
+
+              <Select
+                name="pagamento"
                 size="sm"
                 isInvalid
                 errorBorderColor="teal.500"
-                border={2}
+                border={1}
                 borderRadius="4"
-                paddingLeft="9"
-                placeholder=" "
-                value={this.state.inputPreco}
-                onChange={this.onChangeInputPreco}
-              ></Input>
-<FormLabel color="gray.500">Valor</FormLabel>
-
-            </FormControl>
-            </InputGroup>
-
-            <Select
-              name="pagamento"
-              size="sm"
-              isInvalid
-              errorBorderColor="teal.500"
-              border={1}
-              borderRadius="4"
-              height={6}
-              onChange={this.onChangeInputPagamento}
-            >
-              <option value="" selected>
-                Formas de Pagamento
-              </option>
-              <option value="Cartão de Crédito">Cartão Crédito</option>
-              <option value="Cartão de Débito">Cartão Débito</option>
-              <option value="Pix">Pix</option>
-              <option value="Paypal">PayPal</option>
-              <option value="Boleto">Boleto</option>
-            </Select>
-              </Stack>
+                height={6}
+                onChange={this.onChangeInputPagamento}
+              >
+                <option value="" selected>
+                  Formas de Pagamento
+                </option>
+                <option value="Cartão de Crédito">Cartão Crédito</option>
+                <option value="Cartão de Débito">Cartão Débito</option>
+                <option value="Pix">Pix</option>
+                <option value="Paypal">PayPal</option>
+                <option value="Boleto">Boleto</option>
+              </Select>
+            </Stack>
 
             <ContainerRenderizarPagamento>
               {renderizarPagamento}
@@ -346,7 +306,7 @@ export default class Cadastro extends Component {
               borderRadius="4"
               value={this.state.inputPrazo}
               onChange={this.onChangeInputPrazo}
-              marginTop='4'
+              marginTop="4"
             ></Input>
 
             <Button
